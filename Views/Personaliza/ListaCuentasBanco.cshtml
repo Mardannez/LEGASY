@@ -1,14 +1,14 @@
 ﻿@using LEGASY.Models
-@model List<LEGASY.Models.Personaliza_Fn_ListaSucursales_Result>
+@model List<LEGASY.Models.Personaliza_Fn_CuentasdeBanco_Result>
 @{
-    ViewBag.Title = "ListaSucursales";
+    ViewBag.Title = "ListaCuentasBanco";
 }
 
 <br />
 <!-- Content Header (Page header) -->
 <div class="card-header" style="background-color:white;">
     <div class="col-sm-6">
-        <h1>Sucursales</h1>
+        <h1>Cuentas de Banco</h1>
     </div>
 </div>
 
@@ -22,7 +22,7 @@
                 <div class="card-header">
                     <div class="row mb-2">
                         <div class="col-sm-11">
-                            <h3 class="card-title">Listado de Sucursales</h3>
+                            <h3 class="card-title">Listado de Cuentas de Banco</h3>
                         </div>
                         <div class="col-sm-1">
 
@@ -33,20 +33,18 @@
                 </div>
                 <div class="card-body pad table-responsive">
 
-                    <table id="ListaEmpresas" class="table table-bordered table-striped">
+                    <table id="ListaCuentas" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Empresa</th>
-                                <th>Persona</th>
-                                <th>Direccion</th>
-                                <th>Id1</th>
-                                <th>Telefono1</th>
-                                <th>Correo</th>
+                                <th>TipoCuenta</th>
+                                <th>Moneda</th>
+                                <th>TipoBanco</th>
+                                <th>Estado</th>
+                                <th>Banco</th>
+                                <th>NombreCuenta</th>
                                 <th></th>
-                              
+
 
                             </tr>
                         </thead>
@@ -55,21 +53,20 @@
                             {
 
                                 <tr>
-                                    <td>@item.entryCode</td>
+                                    <td>@item.Id</td>
+                                    <td>@item.TipoCuenta</td>
                                     <td>@item.entryName</td>
-                                    <td>@item.entryDescription</td>
-                                    <td>@item.NombreEmpresa</td>
-                                    <td>@item.entryPerson</td>
-                                    <td>@item.entryAddress</td>
-                                    <td>@item.entryID1</td>
-                                    <td>@item.entryPhone1</td>
-                                    <td>@item.entryEmail</td>
+                                    <td>@item.entryCodeBankType</td>
+                                    <td>@item.entryCodeStatus</td>
+                                    <td>@item.entryBankName</td>
+                                    <td>@item.entryAcctName</td>
+                                  
                                     <td>
-                                        <a class="btn btn-success btn-block" href="@Url.Action("EditarSucursal", "Personaliza", new {IdEmpresa = item.entryCode})">
+                                        <a class="btn btn-success btn-block" href="@Url.Action("EditarSucursal", "Personaliza", new {IdCuenta = item.Id})">
                                             <i class="fas fa-edit"></i> Editar
                                         </a>
                                     </td>
-                                
+
                                 </tr>
                             }
                         </tbody>
@@ -91,7 +88,7 @@
     <script>
         $(function () {
 
-            $("#ListaEmpresas").DataTable({
+            $("#ListaCuentas").DataTable({
                 "responsive": true, "lengthChange": true, "autoWidth": true,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
                 "language": {
@@ -128,3 +125,5 @@
     </script>
 
 }
+
+

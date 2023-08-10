@@ -591,5 +591,23 @@ namespace LEGASY.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Session_Fn_EvaluaSesion_Result>("[LegasyEntities].[Session_Fn_EvaluaSesion](@IdSesion, @Token)", idSesionParameter, tokenParameter);
         }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_CuentasdeBanco")]
+        public virtual IQueryable<Personaliza_Fn_CuentasdeBanco_Result> Personaliza_Fn_CuentasdeBanco()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_CuentasdeBanco_Result>("[LegasyEntities].[Personaliza_Fn_CuentasdeBanco]()");
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_Monedas")]
+        public virtual IQueryable<Personaliza_Fn_Monedas_Result> Personaliza_Fn_Monedas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_Monedas_Result>("[LegasyEntities].[Personaliza_Fn_Monedas]()");
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_TipoCuenta")]
+        public virtual IQueryable<Personaliza_Fn_TipoCuenta_Result> Personaliza_Fn_TipoCuenta()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_TipoCuenta_Result>("[LegasyEntities].[Personaliza_Fn_TipoCuenta]()");
+        }
     }
 }

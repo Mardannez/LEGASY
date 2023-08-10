@@ -848,6 +848,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Personaliza_Fn_CuentasdeBanco" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="bigint" Nullable="false" />
+                <Property Name="entryCodeAccountType" Type="bigint" Nullable="false" />
+                <Property Name="entryCodeCurrency" Type="bigint" Nullable="false" />
+                <Property Name="entryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="IdTipo" Type="bigint" Nullable="false" />
+                <Property Name="TipoCuenta" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryCodeBankType" Type="bigint" Nullable="false" />
+                <Property Name="entryCodeStatus" Type="bit" Nullable="false" />
+                <Property Name="entryBankName" Type="nvarchar" MaxLength="250" Nullable="false" />
+                <Property Name="entryAcctName" Type="nvarchar" MaxLength="250" Nullable="false" />
+                <Property Name="entryOwnerName" Type="nvarchar" MaxLength="250" Nullable="false" />
+                <Property Name="userIDcreate" Type="bigint" />
+                <Property Name="dateCreate" Type="datetime" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="Personaliza_Fn_EmpresaSeleccionada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEmpresa" Type="bigint" Mode="In" />
           <ReturnType>
@@ -922,6 +943,28 @@
                 <Property Name="userIDupdate" Type="bigint" />
                 <Property Name="dateCreate" Type="datetime" />
                 <Property Name="dateUpdate" Type="datetime" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Personaliza_Fn_Monedas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="entryCode" Type="bigint" Nullable="false" />
+                <Property Name="entrySign" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Personaliza_Fn_TipoCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="entryCode" Type="bigint" Nullable="false" />
+                <Property Name="entryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryDescription" Type="nvarchar" MaxLength="250" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -2529,6 +2572,9 @@
             <Parameter Name="IdSesion" Mode="In" Type="Int32" />
             <Parameter Name="Token" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Personaliza_Fn_CuentasdeBanco" IsComposable="true" ReturnType="Collection(LegasyModel.Personaliza_Fn_CuentasdeBanco_Result)" />
+          <FunctionImport Name="Personaliza_Fn_Monedas" IsComposable="true" ReturnType="Collection(LegasyModel.Personaliza_Fn_Monedas_Result)" />
+          <FunctionImport Name="Personaliza_Fn_TipoCuenta" IsComposable="true" ReturnType="Collection(LegasyModel.Personaliza_Fn_TipoCuenta_Result)" />
         </EntityContainer>
         <ComplexType Name="Seguridad_Fn_MostrarModulos_Result">
           <Property Type="Int64" Name="entryCode" Nullable="false" />
@@ -2702,6 +2748,31 @@
           <Property Type="DateTime" Name="Creacion" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="Expiracion" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="Estado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Personaliza_Fn_CuentasdeBanco_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="entryCodeAccountType" Nullable="false" />
+          <Property Type="Int64" Name="entryCodeCurrency" Nullable="false" />
+          <Property Type="String" Name="entryName" Nullable="false" MaxLength="50" />
+          <Property Type="Int64" Name="IdTipo" Nullable="false" />
+          <Property Type="String" Name="TipoCuenta" Nullable="false" MaxLength="50" />
+          <Property Type="Int64" Name="entryCodeBankType" Nullable="false" />
+          <Property Type="Boolean" Name="entryCodeStatus" Nullable="false" />
+          <Property Type="String" Name="entryBankName" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="entryAcctName" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="entryOwnerName" Nullable="false" MaxLength="250" />
+          <Property Type="Int64" Name="userIDcreate" Nullable="true" />
+          <Property Type="DateTime" Name="dateCreate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Personaliza_Fn_Monedas_Result">
+          <Property Type="Int64" Name="entryCode" Nullable="false" />
+          <Property Type="String" Name="entrySign" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="entryName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Personaliza_Fn_TipoCuenta_Result">
+          <Property Type="Int64" Name="entryCode" Nullable="false" />
+          <Property Type="String" Name="entryName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="entryDescription" Nullable="true" MaxLength="250" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3465,6 +3536,43 @@
                 <ScalarProperty Name="Creacion" ColumnName="Creacion" />
                 <ScalarProperty Name="Expiracion" ColumnName="Expiracion" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Personaliza_Fn_CuentasdeBanco" FunctionName="LegasyModel.Store.Personaliza_Fn_CuentasdeBanco">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LegasyModel.Personaliza_Fn_CuentasdeBanco_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="entryCodeAccountType" ColumnName="entryCodeAccountType" />
+                <ScalarProperty Name="entryCodeCurrency" ColumnName="entryCodeCurrency" />
+                <ScalarProperty Name="entryName" ColumnName="entryName" />
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="TipoCuenta" ColumnName="TipoCuenta" />
+                <ScalarProperty Name="entryCodeBankType" ColumnName="entryCodeBankType" />
+                <ScalarProperty Name="entryCodeStatus" ColumnName="entryCodeStatus" />
+                <ScalarProperty Name="entryBankName" ColumnName="entryBankName" />
+                <ScalarProperty Name="entryAcctName" ColumnName="entryAcctName" />
+                <ScalarProperty Name="entryOwnerName" ColumnName="entryOwnerName" />
+                <ScalarProperty Name="userIDcreate" ColumnName="userIDcreate" />
+                <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Personaliza_Fn_Monedas" FunctionName="LegasyModel.Store.Personaliza_Fn_Monedas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LegasyModel.Personaliza_Fn_Monedas_Result">
+                <ScalarProperty Name="entryCode" ColumnName="entryCode" />
+                <ScalarProperty Name="entrySign" ColumnName="entrySign" />
+                <ScalarProperty Name="entryName" ColumnName="entryName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Personaliza_Fn_TipoCuenta" FunctionName="LegasyModel.Store.Personaliza_Fn_TipoCuenta">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LegasyModel.Personaliza_Fn_TipoCuenta_Result">
+                <ScalarProperty Name="entryCode" ColumnName="entryCode" />
+                <ScalarProperty Name="entryName" ColumnName="entryName" />
+                <ScalarProperty Name="entryDescription" ColumnName="entryDescription" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

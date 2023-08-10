@@ -75,7 +75,7 @@ namespace LEGASY.Controllers
 
         public virtual bool CreaSesion(int UsuarioId)
         {
-            DateTime tiempo = DateTime.Now.AddMinutes(1);
+            DateTime tiempo = DateTime.Now.AddHours(9);
 
 
 

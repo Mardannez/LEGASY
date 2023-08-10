@@ -235,6 +235,9 @@
     <Compile Include="Models\PartnersType.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Personaliza_Fn_CuentasdeBanco_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Personaliza_Fn_EmpresaSeleccionada_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
@@ -242,6 +245,12 @@
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_ListaSucursales_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Personaliza_Fn_Monedas_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Personaliza_Fn_TipoCuenta_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Seguridad_Fn_ModuloSeleccionado_Result.cs">
@@ -1070,6 +1079,7 @@
     <Content Include="Views\Personaliza\EditarEmpresa.cshtml" />
     <Content Include="Views\Personaliza\GuardarSucursal.cshtml" />
     <Content Include="Views\Personaliza\ListaSucursales.cshtml" />
+    <Content Include="Views\Personaliza\ListaCuentasBanco.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

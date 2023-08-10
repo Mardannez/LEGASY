@@ -193,7 +193,7 @@ namespace LEGASY.Controllers
                 if (RespValue == 1)
                 {
                     //Listado de Sucursales
-                    return RedirectToAction("Index");
+                    return RedirectToAction("ListaSucursales");
                 }
                 else
                 {
@@ -228,6 +228,23 @@ namespace LEGASY.Controllers
                 Sucursales = db.Personaliza_Fn_ListaSucursales().ToList();
 
                 return View(Sucursales);
+
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+        public ActionResult ListaCuentasBanco(string respuesta)
+        {
+            if (ValidaSesion(9))
+            {
+                List<Personaliza_Fn_CuentasdeBanco_Result> CuentasBanco = new List<Personaliza_Fn_CuentasdeBanco_Result>();
+
+                CuentasBanco = db.Personaliza_Fn_CuentasdeBanco().ToList();
+
+                return View(CuentasBanco);
 
             }
             else
