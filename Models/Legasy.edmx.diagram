@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="161d9a07459640c7a298200ce811a3aa" Name="Diagram1">
+        <EntityTypeShape EntityType="LegasyModel.AccountTypes" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.Banks" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.BanksAccount" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.BudgetsConcept" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.BudgetsYear" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.CasesAreas" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.CasesCategory" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.CasesClass" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.CasesDocuments" Width="1.5" PointX="14" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.CasesInstances" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.CasesParts" Width="1.5" PointX="14" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.CasesPartsType" Width="1.5" PointX="11.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.CasesPretensions" Width="1.5" PointX="11.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.CasesProcedure" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.CasesProcesses" Width="1.5" PointX="11.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.CasesSpendings" Width="1.5" PointX="13.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.CasesTypes" Width="1.5" PointX="13.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.Cities" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.Companies" Width="1.5" PointX="3" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.Countries" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.Currencies" Width="1.5" PointX="0.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.Partners" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.PartnersCivilStatus" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.PartnersClass" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.PartnersGender" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.PartnersPerson" Width="1.5" PointX="3" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.PartnersType" Width="1.5" PointX="5.25" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.States" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.Subsidiaries" Width="1.5" PointX="5.25" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.Users" Width="1.5" PointX="9.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.UsersAuthorization" Width="1.5" PointX="12" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.UsersModules" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.UsersPermission" Width="1.5" PointX="9.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LegasyModel.UsersRole" Width="1.5" PointX="15" PointY="16.75" IsExpanded="true" />
+        <AssociationConnector Association="LegasyModel.FK_0004" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0006" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0005" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0020" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0008" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0007" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0002" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0013" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0003" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0001" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0012" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0014" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0015" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0016" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0017" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0018" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0019" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0021" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0011" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0009" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0010" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0023" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0025" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0024" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0022" ManuallyRouted="false" />
+        <AssociationConnector Association="LegasyModel.FK_0026" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LegasyModel.Sesions" Width="1.5" PointX="12" PointY="20.625" />
+        <AssociationConnector Association="LegasyModel.FK_0030" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

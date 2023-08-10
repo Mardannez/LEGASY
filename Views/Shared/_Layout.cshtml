@@ -1,0 +1,655 @@
+﻿@using LEGASY.Models;
+@using LEGASY.Helpers;
+@{ 
+
+    Users user = ((Users)ViewBag.UsuarioActual);
+
+    List<Seguridad_Fn_ValidaModulo_Result> Modulo = new List<Seguridad_Fn_ValidaModulo_Result>();
+    List<Seguridad_Fn_ValidaPermiso_Result> Permiso = new List<Seguridad_Fn_ValidaPermiso_Result>();
+    LegasyEntities db = new LegasyEntities();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title | Legasy</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link href="~/Plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    @*<link href="~/Plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />*@
+    <!-- iCheck -->
+    <link href="~/Plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet" />
+    <!-- JQVMap -->
+    @*<link href="~/Plugins/jqvmap/jqvmap.min.css" rel="stylesheet" />*@
+
+    <!-- overlayScrollbars -->
+    <link href="~/Plugins/overlayScrollbars/css/OverlayScrollbars.min.css" rel="stylesheet" />
+    <!-- Daterange picker -->
+    @*<link href="~/Plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />*@
+    <!-- summernote -->
+    @*<link href="~/Plugins/summernote/summernote-bs4.min.css" rel="stylesheet" />*@
+    <!-- DataTables -->
+    @*<link href="~/Plugins/datatables-buttons/css/buttons.bootstrap4.css" rel="stylesheet" />*@
+    <link href="~/Plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Plugins/datatables-responsive/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Plugins/datatables-buttons/css/buttons.bootstrap4.min.css" rel="stylesheet" />
+     
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/dist/css/adminlte.min.css" />
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+
+    <div class="wrapper" id="ContenidoLayout">
+
+        <!-- Preloader -->
+        @*<div class="preloader flex-column justify-content-center align-items-center">
+                <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            </div>*@
+
+        <!-- Navbar Barra de Navegacion -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Navbar Search -->
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <div class="navbar-search-block">
+                        <form class="form-inline">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+                <!-- Messages Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-comments"></i>
+                        <span class="badge badge-danger navbar-badge">3</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                @*<img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">*@
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Brad Diesel
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">Call me whenever you can...</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+
+                                <img src="~/Content/dist/img/avatar4.png" />" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        John Pierce
+                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">I got your message bro</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                @*<img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">*@
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Nora Silvester
+                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">The subject goes here</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </div>
+                </li>
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge">15</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown user-menu">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                        <img src="~/Content/dist/img/avatar4.png" class="user-image img-circle elevation-2" alt="User Image">
+                        <span class="d-none d-md-inline"> @user.entryDisplayName</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <!-- User image -->
+                        <li class="user-header bg-primary">
+                            <img src="~/Content/dist/img/avatar4.png" class="img-circle elevation-2" alt="User Image">
+                            <p>
+                                @user.entryDisplayName
+                                <small>Member since Nov. 2012</small>
+                            </p>
+                        </li>
+                        <!-- Menu Body -->
+                        <!--<li class="user-body">
+                            <div class="row">
+                                <div class="col-4 text-center">
+                                    <a href="#">Followers</a>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <a href="#">Sales</a>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <a href="#">Friends</a>
+                                </div>
+                            </div>-->
+                        <!-- /.row -->
+                        <!--</li>-->
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                            <a href="@Url.Action("Salir","Login")" class="btn btn-default btn-flat float-right">Salir</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo  Poner Logo de Sistema Aqui -->
+            @*<a href="index3.html" class="brand-link">
+                    <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light">AdminLTE 3</span>
+                </a>*@
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="~/Content/dist/img/avatar4.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block"@user.entryDisplayName</a>
+                    </div>
+                </div>
+
+
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                           with font-awesome or any other icon font library -->
+
+                        @*Menu de Inicio*@
+                        <li class="nav-item @Html.IsOpen(controller: "Home")">
+                            <a href="#" class="nav-link @Html.IsSelected(controller: "Home")">
+                                <i class="fas fa-home nav-icon"></i>
+                                <p>
+                                    Inicio
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href=@Url.Action("Index", "Home") class="nav-link @Html.IsSelected(controller: "Home", action: "Index")">
+                                        <i class="nav-icon fas fa-chart-line"></i>
+                                        <p>Dashboard</p>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+
+                        @*Menu de Seguridad*@
+                        @{
+                            Modulo = db.Seguridad_Fn_ValidaModulo(Convert.ToInt32(user.entryCode), 1).ToList();
+                            if (Modulo.Count > 0)
+                            {
+
+
+                                <li class="nav-item @Html.IsOpen(controller: "Seguridad")">
+                                    <a href="#" class="nav-link @Html.IsSelected(controller: "Seguridad")">
+                                        <i class="nav-icon fas fa-lock"></i>
+                                        <p>
+                                            Seguridad
+                                            <i class="fas fa-angle-left right"></i>
+                                            @*<span class="badge badge-info right">6</span>*@
+                                        </p>
+                                    </a>
+
+
+
+                                    <ul class="nav nav-treeview">
+
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 1).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("Modulos", "Seguridad") class="nav-link @Html.IsSelected(controller: "Seguridad" , action: "Modulos")">
+                                                        <i class="nav-icon far fa-clipboard"></i>
+                                                        <p>Modulos</p>
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                        @{
+
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 3).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaUsuarios", "Seguridad") class="nav-link @Html.IsSelected(controller: "Seguridad", action: "ListaUsuarios")">
+                                                        <i class="far fa-user nav-icon"></i>
+                                                        <p>Usuarios</p>
+                                                    </a>
+                                                </li>
+                                            }
+
+
+                                        }
+
+                                    </ul>
+                                </li>
+
+                            }
+
+                        };
+
+
+                        @*Menu de Entidades*@
+                        @{
+                            Modulo = db.Seguridad_Fn_ValidaModulo(Convert.ToInt32(user.entryCode), 2).ToList();
+                            if (Modulo.Count > 0)
+                            {
+
+                                @*Menu de Entidades*@
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link" id="Entidades">
+                                        <i class="nav-icon fas fa-book-open"></i>
+                                        <p>
+                                            Entidades
+                                            <i class="fas fa-angle-left right"></i>
+                                            @*<span class="badge badge-info right">6</span>*@
+                                        </p>
+                                    </a>
+
+
+
+                                    <ul class="nav nav-treeview">
+
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 4).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href="pages/layout/top-nav.html" class="nav-link">
+                                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                                        <p>Personas</p>
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                        @{
+
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 5).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link" id="Empresas">
+                                                        <i class="far fa-building nav-icon"></i>
+                                                        <p>Empresas</p>
+                                                    </a>
+                                                </li>
+                                            }
+
+
+                                        }
+
+                                        @{
+
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 6).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link" id="Colaboradores">
+                                                        <i class="far fa-user nav-icon"></i>
+                                                        <p>Colaboradores</p>
+                                                    </a>
+                                                </li>
+                                            }
+
+
+                                        }
+
+
+                                    </ul>
+                                </li>
+
+                            }
+
+                        };
+
+
+                        @*Menu de Personalizar*@
+                        @{
+
+                            Modulo = db.Seguridad_Fn_ValidaModulo(Convert.ToInt32(user.entryCode), 3).ToList();
+                            if (Modulo.Count > 0)
+                            {
+                                @*Menu de Personaliza*@
+                                <li class="nav-item @Html.IsOpen(controller: "Personaliza")">
+                                    <a href="#" class="nav-link @Html.IsSelected(controller: "Personaliza")">
+                                        <i class="nav-icon fas fa-wrench"></i>
+                                        <p>
+                                            Personaliza
+                                            <i class="fas fa-angle-left right"></i>
+                                            @*<span class="badge badge-info right">6</span>*@
+                                        </p>
+                                    </a>
+
+
+                                    <ul class="nav nav-treeview">
+
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 7).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("Index", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "Index")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Empresas</p>
+                                                    </a>
+                                                </li>
+
+                                            }
+
+                                        }
+
+                                        @{
+
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 8).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaSucursales", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaSucursales")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Sucursales</p>
+                                                    </a>
+                                                </li>
+
+                                            }
+
+                                        }
+
+
+
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Cuentas de banco</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Periodos de presupuesto</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Conceptos de presupuesto</p>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Áreas de especializacion</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Categoria de la demanda</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Tipos de procedimiento</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Tipos de instancia</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Tipos de proceso</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Tipos de Caso</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Tipos de pretensión</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Tipos de participante</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Tipos de documento</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Tipos de gasto</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            }
+
+                        };
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            @*Todo el contenido de las paginas aqui*@
+
+            <!--<div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Dashboard</h1>
+                </div>-->
+            <!-- /.col -->
+            <!--<div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard v1</li>
+                </ol>
+            </div>-->
+            <!-- /.col -->
+            <!--</div>--><!-- /.row -->
+
+            @RenderBody()
+
+
+
+
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2023 <a href="https://www.atemhn.com/">Atemhn.com</a>.</strong>
+            Todos los derechos reservados
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0
+            </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+
+
+    <!-- jQuery -->
+    <script src="~/Plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/Plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/Plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    @*  <script src="~/Plugins/sparklines/sparkline.js"></script>*@
+    <!-- JQVMap -->
+    @*<script src="~/Plugins/jqvmap/maps/jquery.vmap.usa.js"></script>*@
+    @*<script src="~/Plugins/jqvmap/jquery.vmap.min.js"></script>*@
+    <!-- jQuery Knob Chart -->
+    @*<script src="~/Plugins/jquery-knob/jquery.knob.min.js"></script>*@
+    <!-- daterangepicker -->
+    <script src="~/Plugins/moment/moment-with-locales.min.js"></script>
+    <script src="~/Plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/Plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="~/Plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/Plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
+    @* <script src="~/Content/dist/js/demo.js"></script>*@
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    @*<script src="~/Content/dist/js/pages/dashboard.js"></script>*@
+    <!-- bootbox Alerts -->
+    <script src="~/Plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Plugins/bootbox/bootbox.all.min.js"></script>
+
+    <!-- DataTables  & Plugins -->
+    <!--<script src="../../plugins/datatables/jquery.dataTables.min.js"></script> -->
+    <script src="~/Plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/Plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/Plugins/jszip/jszip.min.js"></script>
+    <script src="~/Plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/Plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/Plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <!--main js: Archivo Principal de todo el codigo JavasScript -->
+
+    <script src="~/Scripts/main.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+ </html>
+

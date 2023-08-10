@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LEGASY", "LEGASY.csproj", "{EF3BCEDF-1FF8-42CF-B3E2-9EBF9476C4EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF3BCEDF-1FF8-42CF-B3E2-9EBF9476C4EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF3BCEDF-1FF8-42CF-B3E2-9EBF9476C4EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF3BCEDF-1FF8-42CF-B3E2-9EBF9476C4EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF3BCEDF-1FF8-42CF-B3E2-9EBF9476C4EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0330115-155A-454C-9CF5-668821FAF791}
+	EndGlobalSection
+EndGlobal

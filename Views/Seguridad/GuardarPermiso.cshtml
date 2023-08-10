@@ -1,0 +1,123 @@
+﻿
+@model  LEGASY.Models.Seguridad_Fn_MostrarModulos_Result
+@{
+    ViewBag.Title = "GuardarPermiso";
+
+    int IdModuloSelect = ViewBag.IdModulo;
+
+}
+
+
+<br />
+<!-- Content Header (Page header) -->
+<div class="card-header" style="background-color:white;">
+    <div class="col-sm-6">
+        <h1>Registrar Nuevo Permiso en <strong>@Model.entryName</strong></h1>
+    </div>
+
+
+</div>
+
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <div class="col-sm-10">
+                        <h3 class="card-title">Datos del Permiso</h3>
+                    </div>
+                    <br />
+                    <hr />
+                    <div class="card-body pad table-responsive">
+
+                        @*Todo el Contenido Aqui*@
+                        <!-- Horizontal Form -->
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Formulario</h3>
+                            </div>
+
+                            @if (ViewBag.Respuesta != null)
+                            {
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="alert alert-warning">
+                                            @ViewBag.Respuesta
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            @using (Html.BeginForm())
+                            {
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group row">
+                                                <label for="Name" class="col-sm-2 col-form-label">IdModulo</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="IdModulo" name="IdModulo" placeholder="Nombre" value="@IdModuloSelect" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Name" class="col-sm-2 col-form-label">Nombre</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Nombre" value="@Model.entryName" disabled>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group row">
+                                                <label for="Descrípcion" class="col-sm-2 col-form-label">Nombre</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="NombrePermiso" name="Nombre Permiso" placeholder="NombrePermiso">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Descrípcion" class="col-sm-2 col-form-label">Descripcion</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="Descripcion" name="Descripcion Permiso" placeholder="Descripcion">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group row">
+                                                <label for="Estado" class="col-sm-2 col-form-label">Estado</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control" id="Estado" name="Estado">
+                                                        <option selected disabled="disabled">Seleccione</option>
+                                                        <option value="1">Activo</option>
+                                                        <option value="0">Inactivo</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-info">Guardar</button>
+                                    <button type="submit" class="btn btn-default float-right">Cancelar</button>
+                                </div>
+
+                                <!-- /.card-footer -->
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
