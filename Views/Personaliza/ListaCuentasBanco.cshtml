@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-sm-1">
 
-                            @Html.ActionLink("Registrar nuevo", "Index", null, new { @class = "btn btn-outline-primary btn-block btn-xs" })
+                            @Html.ActionLink("Registrar nuevo", "CrearCuentaBanco", null, new { @class = "btn btn-outline-primary btn-block btn-xs" })
 
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                                     <td>@item.entryAcctName</td>
                                   
                                     <td>
-                                        <a class="btn btn-success btn-block" href="@Url.Action("EditarSucursal", "Personaliza", new {IdCuenta = item.Id})">
+                                        <a class="btn btn-success btn-block" href="@Url.Action("EditarCuenta", "Personaliza", new {IdCuenta = item.Id})">
                                             <i class="fas fa-edit"></i> Editar
                                         </a>
                                     </td>
@@ -105,7 +105,7 @@
                     "sInfoThousands": ",",
                     "sLoadingRecords": "Cargando...",
                     "oPaginate": {
-                        "sFirst": "Primero",
+                        "sFirst": "Primero", 
                         "sLast": "Último",
                         "sNext": "Siguiente",
                         "sPrevious": "Anterior"

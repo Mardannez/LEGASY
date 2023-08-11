@@ -1080,6 +1080,7 @@
     <Content Include="Views\Personaliza\GuardarSucursal.cshtml" />
     <Content Include="Views\Personaliza\ListaSucursales.cshtml" />
     <Content Include="Views\Personaliza\ListaCuentasBanco.cshtml" />
+    <Content Include="Views\Personaliza\CrearCuentaBanco.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -254,5 +254,43 @@ namespace LEGASY.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult CrearCuentaBanco(string respuesta)
+        {
+
+            if (ValidaSesion(9))
+            {
+                if (respuesta != null)
+                {
+                    ViewBag.Respuesta = respuesta;
+                }
+
+                List<SelectListItem> TipoCuenta = new List<SelectListItem>();
+                TipoCuenta.Add(new SelectListItem { Value = "", Text = "[-- Seleccionar Tipo Cuenta --]" });
+                foreach (var item in db.Personaliza_Fn_TipoCuenta().ToList())
+                {
+                    TipoCuenta.Add(new SelectListItem { Value = item.entryCode.ToString(), Text = item.entryName.ToString() });
+                }
+
+                ViewBag.TipoCuentaBancos = TipoCuenta;
+
+                List<SelectListItem> Moneda = new List<SelectListItem>();
+                Moneda.Add(new SelectListItem { Value = "", Text = "[-- Seleccionar Moneda --]" });
+                foreach (var item in db.Personaliza_Fn_Monedas().ToList())
+                {
+                    Moneda.Add(new SelectListItem { Value = item.entryCode.ToString(), Text = item.entryName.ToString() });
+                }
+
+                ViewBag.Monedas = Moneda;
+
+                return View();
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
     }
 }

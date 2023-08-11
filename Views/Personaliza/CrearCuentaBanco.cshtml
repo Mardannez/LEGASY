@@ -1,0 +1,118 @@
+﻿@using LEGASY.Models
+
+@{
+    ViewBag.Title = "CrearCuentaBanco";
+}
+
+<br />
+<!-- Content Header (Page header) -->
+<div class="card-header" style="background-color:white;">
+    <div class="col-sm-6">
+        <h1>Crear Cuentas de Banco</h1>
+    </div>
+
+
+</div>
+
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <div class="col-sm-10">
+                        <h3 class="card-title">Datos de la cuenta</h3>
+                    </div>
+                    <br />
+                    <hr />
+                    <div class="card-body pad table-responsive">
+
+                        @*Todo el Contenido Aqui*@
+                        <!-- Horizontal Form -->
+                        <div class="card card-secondary">
+                            <div class="card-header">
+                                <h3 class="card-title">Formulario</h3>
+                            </div>
+
+                            @if (ViewBag.Respuesta != null)
+                            {
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="alert alert-warning">
+                                            @ViewBag.Respuesta
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            @using (Html.BeginForm())
+                            {
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="Nombre">Tipo Cuenta</label>
+                                                @Html.DropDownList("TipoCuentaBancos", null, new { @class = "form-control" })
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Direccion">Tipo Banco</label>
+                                                <input type="text" class="form-control" id="TipoBanco" name="TipoBanco" placeholder="Ingresar Tipo Banco">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="Persona">Moneda</label>
+                                                @Html.DropDownList("Monedas", null, new { @class = "form-control" })
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Direccion">Nombre Banco</label>
+                                                <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Ingresar Nombre">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                 
+                                 
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="Correo">Cuenta Nombre</label>
+                                                <input type="text" class="form-control" id="CuentaNombre" name="CuentaNombre" placeholder="Ingresar Cuenta">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="Comentarios">Propietario</label>
+                                                <input type="text" class="form-control" id="Propietario" name="Propietario" placeholder="Ingresar Propietario">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                    <button type="button" class="btn btn-danger">Cancelar</button>
+                                </div>
+
+                                <!-- /.card-footer -->
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
