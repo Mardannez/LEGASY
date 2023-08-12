@@ -609,5 +609,186 @@ namespace LEGASY.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_TipoCuenta_Result>("[LegasyEntities].[Personaliza_Fn_TipoCuenta]()");
         }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_ListaPeriodosPresupuesto")]
+        public virtual IQueryable<Personaliza_Fn_ListaPeriodosPresupuesto_Result> Personaliza_Fn_ListaPeriodosPresupuesto()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_ListaPeriodosPresupuesto_Result>("[LegasyEntities].[Personaliza_Fn_ListaPeriodosPresupuesto]()");
+        }
+    
+        public virtual int Personaliza_P_CrearCuentaBancaria(Nullable<long> idTipoCuenta, Nullable<long> idMoneda, Nullable<long> idTipoBanco, Nullable<bool> estatus, string nombreBanco, string nombreCuenta, string nombreDueño, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var idTipoCuentaParameter = idTipoCuenta.HasValue ?
+                new ObjectParameter("IdTipoCuenta", idTipoCuenta) :
+                new ObjectParameter("IdTipoCuenta", typeof(long));
+    
+            var idMonedaParameter = idMoneda.HasValue ?
+                new ObjectParameter("IdMoneda", idMoneda) :
+                new ObjectParameter("IdMoneda", typeof(long));
+    
+            var idTipoBancoParameter = idTipoBanco.HasValue ?
+                new ObjectParameter("IdTipoBanco", idTipoBanco) :
+                new ObjectParameter("IdTipoBanco", typeof(long));
+    
+            var estatusParameter = estatus.HasValue ?
+                new ObjectParameter("Estatus", estatus) :
+                new ObjectParameter("Estatus", typeof(bool));
+    
+            var nombreBancoParameter = nombreBanco != null ?
+                new ObjectParameter("NombreBanco", nombreBanco) :
+                new ObjectParameter("NombreBanco", typeof(string));
+    
+            var nombreCuentaParameter = nombreCuenta != null ?
+                new ObjectParameter("NombreCuenta", nombreCuenta) :
+                new ObjectParameter("NombreCuenta", typeof(string));
+    
+            var nombreDueñoParameter = nombreDueño != null ?
+                new ObjectParameter("NombreDueño", nombreDueño) :
+                new ObjectParameter("NombreDueño", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_CrearCuentaBancaria", idTipoCuentaParameter, idMonedaParameter, idTipoBancoParameter, estatusParameter, nombreBancoParameter, nombreCuentaParameter, nombreDueñoParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
+    
+        public virtual int Personaliza_P_CrearPeriodoPresupuesto(Nullable<bool> estado, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_CrearPeriodoPresupuesto", estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
+    
+        public virtual int Personaliza_P_EditarPeriodoPresupuesto(Nullable<long> id, Nullable<bool> estado, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_EditarPeriodoPresupuesto", idParameter, estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_PeriodoSeleccionado")]
+        public virtual IQueryable<Personaliza_Fn_PeriodoSeleccionado_Result> Personaliza_Fn_PeriodoSeleccionado(Nullable<long> idPeriodo)
+        {
+            var idPeriodoParameter = idPeriodo.HasValue ?
+                new ObjectParameter("IdPeriodo", idPeriodo) :
+                new ObjectParameter("IdPeriodo", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_PeriodoSeleccionado_Result>("[LegasyEntities].[Personaliza_Fn_PeriodoSeleccionado](@IdPeriodo)", idPeriodoParameter);
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_ConceptoPSeleccionado")]
+        public virtual IQueryable<Personaliza_Fn_ConceptoPSeleccionado_Result> Personaliza_Fn_ConceptoPSeleccionado(Nullable<long> idConcepto)
+        {
+            var idConceptoParameter = idConcepto.HasValue ?
+                new ObjectParameter("IdConcepto", idConcepto) :
+                new ObjectParameter("IdConcepto", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_ConceptoPSeleccionado_Result>("[LegasyEntities].[Personaliza_Fn_ConceptoPSeleccionado](@IdConcepto)", idConceptoParameter);
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_ListaConceptosPresupuesto")]
+        public virtual IQueryable<Personaliza_Fn_ListaConceptosPresupuesto_Result> Personaliza_Fn_ListaConceptosPresupuesto()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_ListaConceptosPresupuesto_Result>("[LegasyEntities].[Personaliza_Fn_ListaConceptosPresupuesto]()");
+        }
+    
+        public virtual int Personaliza_P_CrearConceptoPresupuesto(Nullable<bool> estado, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_CrearConceptoPresupuesto", estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
+    
+        public virtual int Personaliza_P_EditarConceptoPresupuesto(Nullable<long> id, Nullable<bool> estado, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_EditarConceptoPresupuesto", idParameter, estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
     }
 }

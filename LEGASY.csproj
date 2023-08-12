@@ -235,19 +235,31 @@
     <Compile Include="Models\PartnersType.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Personaliza_Fn_ConceptoPSeleccionado_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Personaliza_Fn_CuentasdeBanco_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_EmpresaSeleccionada_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Personaliza_Fn_ListaConceptosPresupuesto_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Personaliza_Fn_ListaEmpresas_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Personaliza_Fn_ListaPeriodosPresupuesto_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_ListaSucursales_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_Monedas_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Personaliza_Fn_PeriodoSeleccionado_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_TipoCuenta_Result.cs">
@@ -1081,6 +1093,9 @@
     <Content Include="Views\Personaliza\ListaSucursales.cshtml" />
     <Content Include="Views\Personaliza\ListaCuentasBanco.cshtml" />
     <Content Include="Views\Personaliza\CrearCuentaBanco.cshtml" />
+    <Content Include="Views\Personaliza\ListaPeriodosPresupuesto.cshtml" />
+    <Content Include="Views\Personaliza\CrearPeriodosPresupuesto.cshtml" />
+    <Content Include="Views\Personaliza\EditarPeriodoPresupuesto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

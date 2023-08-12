@@ -7,7 +7,7 @@ using LEGASY.Encripta;
 
 namespace LEGASY.Controllers
 {
-    [ValidarSesion]
+    
     public class HomeController : PrincipalController
     {
 

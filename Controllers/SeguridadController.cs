@@ -13,7 +13,7 @@ using LEGASY.Encripta;
 
 namespace LEGASY.Controllers
 {
-    [ValidarSesion]
+    
     public class SeguridadController : PrincipalController
     {
         // GET: Seguridad
@@ -57,36 +57,42 @@ namespace LEGASY.Controllers
         [HttpPost]
         public ActionResult GuardarModulos( string Nombre, string NombreCorto, string Descripcion, int Estado)
         {
-
-            JsonResult respuesta = new JsonResult();
-            ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
-            ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
-            bool State = false;
-
-            if(Estado == 1)
+            if (ValidaSesion())
             {
-                State = true;
-            }
+                JsonResult respuesta = new JsonResult();
+                ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+                bool State = false;
 
-            db.Seguridad_P_GuardarModulo(State, Nombre, NombreCorto, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+                if (Estado == 1)
+                {
+                    State = true;
+                }
 
-            int RespValue = Convert.ToInt32(Respuesta.Value);
-            string MenValue = Convert.ToString(Mensaje.Value);
+                db.Seguridad_P_GuardarModulo(State, Nombre, NombreCorto, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
 
-            if(RespValue == 1)
-            {
-                respuesta.Data = new { estado = true, mensaje = "El Modulo se guardo correctamente!" };
+                int RespValue = Convert.ToInt32(Respuesta.Value);
+                string MenValue = Convert.ToString(Mensaje.Value);
 
-                return RedirectToAction("Modulos");
+                if (RespValue == 1)
+                {
+                    respuesta.Data = new { estado = true, mensaje = "El Modulo se guardo correctamente!" };
+
+                    return RedirectToAction("Modulos");
+                }
+                else
+                {
+                    ViewBag.Respuesta = MenValue;
+                    return RedirectToAction("GuardarModulos", new { @respuesta = MenValue.ToString() });
+
+                }
             }
             else
             {
-                ViewBag.Respuesta = MenValue;
-                return RedirectToAction("GuardarModulos", new {@respuesta = MenValue.ToString()});
-
+                return Salir();
             }
 
-           
+         
         }
         [HttpGet]
         public ActionResult EditarModulo(int? Id, string respuesta)
@@ -123,33 +129,40 @@ namespace LEGASY.Controllers
         public ActionResult EditarModulo(int entryCode, int Estado, string Nombre, string NombreCorto, string Descripcion)
         {
 
-            
-            ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
-            ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
-            bool State = false;
-
-            if (Estado == 1)
+            if (ValidaSesion())
             {
-                State = true;
-            }
+                ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+                bool State = false;
 
-            db.Seguridad_P_EditarModulo(entryCode, State, Nombre, NombreCorto, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+                if (Estado == 1)
+                {
+                    State = true;
+                }
 
-            int RespValue = Convert.ToInt32(Respuesta.Value);
-            string MenValue = Convert.ToString(Mensaje.Value);
+                db.Seguridad_P_EditarModulo(entryCode, State, Nombre, NombreCorto, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
 
-            if (RespValue == 1)
-            {
-                
+                int RespValue = Convert.ToInt32(Respuesta.Value);
+                string MenValue = Convert.ToString(Mensaje.Value);
 
-                return RedirectToAction("EditarModulo", new { @Id = entryCode, @respuesta = MenValue.ToString() });
+                if (RespValue == 1)
+                {
+
+
+                    return RedirectToAction("EditarModulo", new { @Id = entryCode, @respuesta = MenValue.ToString() });
+                }
+                else
+                {
+                    ViewBag.Respuesta = MenValue;
+                    return RedirectToAction("EditarModulo", new { @Id = entryCode, @respuesta = MenValue.ToString() });
+
+                }
             }
             else
             {
-                ViewBag.Respuesta = MenValue;
-                return RedirectToAction("EditarModulo", new { @Id = entryCode, @respuesta = MenValue.ToString() });
-
+                return Salir();
             }
+           
 
 
         }
@@ -198,32 +211,40 @@ namespace LEGASY.Controllers
         [HttpPost]
         public ActionResult GuardarPermiso(int IdModulo, int Estado, string NombrePermiso, string Descripcion)
         {
-            ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
-            ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
-            bool State = false;
-
-            if (Estado == 1)
+            if (ValidaSesion())
             {
-                State = true;
-            }
+                ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+                bool State = false;
 
-            db.Seguridad_P_GuardarPermiso(IdModulo, State, NombrePermiso, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+                if (Estado == 1)
+                {
+                    State = true;
+                }
 
-            int RespValue = Convert.ToInt32(Respuesta.Value);
-            string MenValue = Convert.ToString(Mensaje.Value);
+                db.Seguridad_P_GuardarPermiso(IdModulo, State, NombrePermiso, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
 
-            if (RespValue == 1)
-            {
-              
+                int RespValue = Convert.ToInt32(Respuesta.Value);
+                string MenValue = Convert.ToString(Mensaje.Value);
 
-                return RedirectToAction("ListaPermisos", new { @IdModulo = IdModulo });
+                if (RespValue == 1)
+                {
+
+
+                    return RedirectToAction("ListaPermisos", new { @IdModulo = IdModulo });
+                }
+                else
+                {
+                    ViewBag.Respuesta = MenValue;
+                    return RedirectToAction("GuardarPermiso", new { @respuesta = MenValue.ToString() });
+
+                }
             }
             else
             {
-                ViewBag.Respuesta = MenValue;
-                return RedirectToAction("GuardarPermiso", new { @respuesta = MenValue.ToString() });
-
+                return Salir();
             }
+          
 
 
         }
@@ -263,33 +284,39 @@ namespace LEGASY.Controllers
         [HttpPost]
         public ActionResult EditarPermiso(int entryCode, int Estado, string Nombre, string NombreCorto, string Descripcion)
         {
-            ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
-            ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
-            bool State = false;
-
-            if (Estado == 1)
+            if (ValidaSesion())
             {
-                State = true;
-            }
+                ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+                bool State = false;
 
-            db.Seguridad_P_EditarModulo(entryCode, State, Nombre, NombreCorto, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+                if (Estado == 1)
+                {
+                    State = true;
+                }
 
-            int RespValue = Convert.ToInt32(Respuesta.Value);
-            string MenValue = Convert.ToString(Mensaje.Value);
+                db.Seguridad_P_EditarModulo(entryCode, State, Nombre, NombreCorto, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
 
-            if (RespValue == 1)
-            {
-              
+                int RespValue = Convert.ToInt32(Respuesta.Value);
+                string MenValue = Convert.ToString(Mensaje.Value);
 
-                return RedirectToAction("EditarModulo", new { @Id = entryCode, @respuesta = MenValue.ToString() });
+                if (RespValue == 1)
+                {
+
+
+                    return RedirectToAction("EditarModulo", new { @Id = entryCode, @respuesta = MenValue.ToString() });
+                }
+                else
+                {
+                    ViewBag.Respuesta = MenValue;
+                    return RedirectToAction("EditarModulo", new { @Id = entryCode, @respuesta = MenValue.ToString() });
+
+                }
             }
             else
             {
-                ViewBag.Respuesta = MenValue;
-                return RedirectToAction("EditarModulo", new { @Id = entryCode, @respuesta = MenValue.ToString() });
-
+                return Salir();
             }
-
 
         }
         public ActionResult ListaUsuarios()
@@ -335,32 +362,40 @@ namespace LEGASY.Controllers
         public ActionResult RegistrarUsuario(string NombreDesplegable, string NombreUsuario, string Correo, string Contraseña, string Descripcion)
         {
 
-            EncryptMD5 UsingEncript = new EncryptMD5();
-            
-            ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
-            ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
-
-            string ContraseñaEncriptada = UsingEncript.Encriptar(Contraseña);
-            //Tengo que encriptar la contraseña del usuario
-
-
-            db.Seguridad_P_GuardarUsuario(true, NombreDesplegable, Correo, NombreUsuario, ContraseñaEncriptada, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
-
-            int RespValue = Convert.ToInt32(Respuesta.Value);
-            string MenValue = Convert.ToString(Mensaje.Value);
-
-            if (RespValue == 1)
+            if (ValidaSesion())
             {
+                EncryptMD5 UsingEncript = new EncryptMD5();
+
+                ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                string ContraseñaEncriptada = UsingEncript.Encriptar(Contraseña);
+                //Tengo que encriptar la contraseña del usuario
 
 
-                return RedirectToAction("ListaUsuarios");
+                db.Seguridad_P_GuardarUsuario(true, NombreDesplegable, Correo, NombreUsuario, ContraseñaEncriptada, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                int RespValue = Convert.ToInt32(Respuesta.Value);
+                string MenValue = Convert.ToString(Mensaje.Value);
+
+                if (RespValue == 1)
+                {
+
+
+                    return RedirectToAction("ListaUsuarios");
+                }
+                else
+                {
+
+                    return RedirectToAction("RegistrarUsuario", new { @respuesta = MenValue.ToString() });
+
+                }
             }
             else
             {
-               
-                return RedirectToAction("RegistrarUsuario", new { @respuesta = MenValue.ToString() });
-
+                return Salir();
             }
+           
 
         }
 
@@ -413,30 +448,34 @@ namespace LEGASY.Controllers
                 return Salir();
             }
           
-           
         }
-
 
         [HttpPost]
         public ActionResult ModulosUsuario(int Usuario, string Modulos)
         {
-           
+           if(ValidaSesion())
+            {
                 var elususario = this.db.Users.Find(Usuario);
                 string[] los = Modulos.Split(',');
-            db.Seguridad_P_Usuario_RemoveAllModulos(Usuario);
-            for (int i = 0; i < los.Length; i++)
-            {
-                if (los[i] != "")
+                db.Seguridad_P_Usuario_RemoveAllModulos(Usuario);
+                for (int i = 0; i < los.Length; i++)
                 {
-                    int idmodulo = Convert.ToInt32(los[i]);
-                    db.Seguridad_P_Usuario_SetModulo(Usuario, idmodulo, 1);
+                    if (los[i] != "")
+                    {
+                        int idmodulo = Convert.ToInt32(los[i]);
+                        db.Seguridad_P_Usuario_SetModulo(Usuario, idmodulo, 1);
+                    }
                 }
+                ViewBag.UserName = elususario.entryUserName;
+                ViewBag.UserId = elususario.entryCode;
+                ViewBag.TodoslosModulos = db.UsersModules.Where(x => x.entryCodeStatus == true).ToList();
+                ViewBag.Mensaje = "Los modulos fueron asignados correctamente, por favor vuelva a definir los Permisos. ";
+                return View(elususario.UsersRole.ToList());
             }
-            ViewBag.UserName = elususario.entryUserName;
-            ViewBag.UserId = elususario.entryCode;
-            ViewBag.TodoslosModulos = db.UsersModules.Where(x => x.entryCodeStatus == true).ToList();
-            ViewBag.Mensaje = "Los modulos fueron asignados correctamente, por favor vuelva a definir los Permisos. ";
-            return View(elususario.UsersRole.ToList());
+            else
+            {
+                return Salir();
+            }
            
         }
 
@@ -459,24 +498,30 @@ namespace LEGASY.Controllers
         [HttpPost]
         public ActionResult PermisosUsuario(int? IdUsuario, string Permisos)
         {
-
-            Users elususario = db.Users.Find(IdUsuario);
-            string[] los = Permisos.Split(',');
-            db.Seguridad_P_Usuario_RemoveAllPermisos(IdUsuario);
-            for (int i = 0; i < los.Length; i++)
+            if (ValidaSesion())
             {
-                if (los[i] != "")
+                Users elususario = db.Users.Find(IdUsuario);
+                string[] los = Permisos.Split(',');
+                db.Seguridad_P_Usuario_RemoveAllPermisos(IdUsuario);
+                for (int i = 0; i < los.Length; i++)
                 {
-                    int idpermiso = Convert.ToInt32(los[i]);
-                    db.Seguridad_P_Usuario_SetPermisos(IdUsuario, idpermiso, 1);
+                    if (los[i] != "")
+                    {
+                        int idpermiso = Convert.ToInt32(los[i]);
+                        db.Seguridad_P_Usuario_SetPermisos(IdUsuario, idpermiso, 1);
+                    }
                 }
+                ViewBag.UserName = elususario.entryUserName;
+                ViewBag.UserId = elususario.entryCode;
+                ViewBag.LosModulos = elususario.UsersRole.Where(x => x.UsersModules.entryCodeStatus == true).ToList();
+                ViewBag.Mensaje = "Los Permisos fueron asignados correctamente.";
+                return View(elususario.UsersAuthorization.ToList());
             }
-            ViewBag.UserName = elususario.entryUserName;
-            ViewBag.UserId = elususario.entryCode;
-            ViewBag.LosModulos = elususario.UsersRole.Where(x => x.UsersModules.entryCodeStatus == true).ToList();
-            ViewBag.Mensaje = "Los Permisos fueron asignados correctamente.";
-            return View(elususario.UsersAuthorization.ToList());
-
+            else
+            {
+                return Salir();
+            }
+           
         }
 
     }

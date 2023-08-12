@@ -75,7 +75,8 @@ namespace LEGASY.Controllers
             }
            
         }
-        public ActionResult Salir()
+      
+        public ActionResult CerrarSistema()
         {
             //Cerrar sesion en tabla de servicio
 

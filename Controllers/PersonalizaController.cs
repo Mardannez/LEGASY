@@ -9,7 +9,7 @@ using LEGASY.Encripta;
 
 namespace LEGASY.Controllers
 {
-    [ValidarSesion]
+ 
     public class PersonalizaController : PrincipalController
     {
         // GET: Personaliza
@@ -117,46 +117,55 @@ namespace LEGASY.Controllers
         [HttpPost]
         public ActionResult EditarEmpresa(Int64 IdEmpresa, string Nombre, string Descripcion, string Persona, string Direccion, string Identidad1, string Identidad2, string Identidad3, string Telefono1, string Telefono2, string Telefono3, string Correo, string Comentarios)
         {
-            try
+
+            if (ValidaSesion())
             {
-                long IdUsuario = (long)Session["UsuarioId"];
-
-                ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
-                ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
-
-                db.Personaliza_P_EditarEmpresas(IdEmpresa, Nombre, Descripcion, Persona, Direccion, Identidad1, Identidad2, Identidad3, Telefono1, Telefono2, Telefono3, Correo, Comentarios, IdUsuario, DateTime.Now, Respuesta, Mensaje);
-
-                int RespValue = Convert.ToInt32(Respuesta.Value);
-                string MenValue = Convert.ToString(Mensaje.Value);
-
-                if (RespValue == 1)
+                try
                 {
+                    long IdUsuario = (long)Session["UsuarioId"];
 
-                    return RedirectToAction("Index");
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_EditarEmpresas(IdEmpresa, Nombre, Descripcion, Persona, Direccion, Identidad1, Identidad2, Identidad3, Telefono1, Telefono2, Telefono3, Correo, Comentarios, IdUsuario, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("EditarEmpresa", new { @respuesta = MenValue.ToString() });
+
+                    }
                 }
-                else
+
+                catch (Exception ex)
                 {
+                    string Error;
 
-                    return RedirectToAction("EditarEmpresa", new { @respuesta = MenValue.ToString() });
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
 
+                    return RedirectToAction("EditarEmpresa", new { @respuesta = Error });
                 }
             }
-
-            catch (Exception ex)
+            else
             {
-                string Error;
-
-                if (ex.InnerException != null)
-                {
-                    Error = ex.InnerException.Message;
-                }
-                else
-                {
-                    Error = ex.Message;
-                }
-
-                return RedirectToAction("EditarEmpresa", new { @respuesta = Error });
+                return Salir();
             }
+          
         }
 
         public ActionResult GuardarSucursal(int IdEmpresa)
@@ -179,45 +188,54 @@ namespace LEGASY.Controllers
         [HttpPost]
         public ActionResult GuardarSucursal(int IdEmpresa, string Nombre, string Descripcion, string Persona, string Direccion, string Identidad1, string Identidad2, string Identidad3, string Telefono1, string Telefono2, string Telefono3, string Correo, string Comentarios)
         {
-            try
+            if (ValidaSesion())
             {
-
-                ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
-                ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
-
-                db.Personaliza_P_GuardarSucursal(IdEmpresa, Nombre, Descripcion, Persona, Direccion, Identidad1, Identidad2, Identidad3, Telefono1, Telefono2, Telefono3, Correo, Comentarios, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje); ;
-
-                int RespValue = Convert.ToInt32(Respuesta.Value);
-                string MenValue = Convert.ToString(Mensaje.Value);
-
-                if (RespValue == 1)
-                {
-                    //Listado de Sucursales
-                    return RedirectToAction("ListaSucursales");
-                }
-                else
+                try
                 {
 
-                    return RedirectToAction("GuardarEmpresa", new { @respuesta = MenValue.ToString() });
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
 
+                    db.Personaliza_P_GuardarSucursal(IdEmpresa, Nombre, Descripcion, Persona, Direccion, Identidad1, Identidad2, Identidad3, Telefono1, Telefono2, Telefono3, Correo, Comentarios, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje); ;
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+                        //Listado de Sucursales
+                        return RedirectToAction("ListaSucursales");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("GuardarEmpresa", new { @respuesta = MenValue.ToString() });
+
+                    }
                 }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("GuardarEmpresa", new { @respuesta = Error });
+                }
+
+            }
+            else
+            {
+                return Salir();
             }
 
-            catch (Exception ex)
-            {
-                string Error;
-
-                if (ex.InnerException != null)
-                {
-                    Error = ex.InnerException.Message;
-                }
-                else
-                {
-                    Error = ex.Message;
-                }
-
-                return RedirectToAction("GuardarEmpresa", new { @respuesta = Error });
-            }
         }
         public ActionResult ListaSucursales(string respuesta)
         {
@@ -291,6 +309,378 @@ namespace LEGASY.Controllers
             }
 
         }
+        #region  ################ Periodos de Presupuesto  #################
+
+        public ActionResult ListaPeriodosPresupuesto(string respuesta)
+        {
+            if (ValidaSesion(18))
+            {
+                List<Personaliza_Fn_ListaPeriodosPresupuesto_Result> Periodos = new List<Personaliza_Fn_ListaPeriodosPresupuesto_Result>();
+
+                Periodos = db.Personaliza_Fn_ListaPeriodosPresupuesto().ToList();
+
+                return View(Periodos);
+
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        public ActionResult CrearPeriodosPresupuesto(string respuesta)
+        {
+
+            if(ValidaSesion(18))
+            {
+                if (respuesta != null)
+                {
+                    ViewBag.Respuesta = respuesta;
+                }
+                return View();
+            }
+            else{
+                return Salir();
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult CrearPeriodosPresupuesto(int Estado, string Nombre, string Descripcion)
+        {
+            if (ValidaSesion(18))
+            {
+                try
+                {   bool EstadoPeriodo = false;
+
+                    if(Estado == 1)
+                    {
+                        EstadoPeriodo = true;
+                    }
+                    else
+                    {
+                        EstadoPeriodo= false;
+                    }
+                    
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_CrearPeriodoPresupuesto(EstadoPeriodo, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+                      
+                        return RedirectToAction("ListaPeriodosPresupuesto");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("CrearPeriodosPresupuesto", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("CrearPeriodosPresupuesto", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+            
+        }
+
+
+        public ActionResult EditarPeriodoPresupuesto(int Id)
+        {
+
+            if (ValidaSesion(18))
+            {
+
+                Personaliza_Fn_PeriodoSeleccionado_Result Periodo = new Personaliza_Fn_PeriodoSeleccionado_Result();
+
+                Periodo = db.Personaliza_Fn_PeriodoSeleccionado(Id).FirstOrDefault();
+
+                return View(Periodo);
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult EditarPeriodoPresupuesto(Int64 Id, int Estado, string Nombre, string Descripcion)
+        {
+
+            if (ValidaSesion(18))
+            {
+                try
+                {
+                    bool EstadoPeriodo = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoPeriodo = true;
+                    }
+                    else
+                    {
+                        EstadoPeriodo = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_EditarPeriodoPresupuesto(Id, EstadoPeriodo, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaPeriodosPresupuesto");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("EditarPeriodoPresupuesto", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("EditarPeriodoPresupuesto", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        #endregion
+
+
+        #region  ################ Conceptos de Presupuesto  #################
+
+        public ActionResult ListaConceptosPresupuesto(string respuesta)
+        {
+            if (ValidaSesion(19))
+            {
+                List<Personaliza_Fn_ListaConceptosPresupuesto_Result> Conceptos = new List<Personaliza_Fn_ListaConceptosPresupuesto_Result>();
+
+                Conceptos = db.Personaliza_Fn_ListaConceptosPresupuesto().ToList();
+
+                return View(Conceptos);
+
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        public ActionResult CrearConceptosPresupuesto(string respuesta)
+        {
+
+            if (ValidaSesion(19))
+            {
+                if (respuesta != null)
+                {
+                    ViewBag.Respuesta = respuesta;
+                }
+                return View();
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult CrearConceptosPresupuesto(int Estado, string Nombre, string Descripcion)
+        {
+            if (ValidaSesion(19))
+            {
+                try
+                {
+                    bool EstadoPeriodo = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoPeriodo = true;
+                    }
+                    else
+                    {
+                        EstadoPeriodo = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_CrearConceptoPresupuesto(EstadoPeriodo, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaConceptosPresupuesto");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("CrearConceptosPresupuesto", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("CrearConceptosPresupuesto", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+
+        public ActionResult EditarConceptoPresupuesto(int Id)
+        {
+
+            if (ValidaSesion(19))
+            {
+
+                Personaliza_Fn_ConceptoPSeleccionado_Result Concepto = new Personaliza_Fn_ConceptoPSeleccionado_Result();
+
+                Concepto = db.Personaliza_Fn_ConceptoPSeleccionado(Id).FirstOrDefault();
+
+                return View(Concepto);
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult EditarConceptoPresupuesto(Int64 Id, int Estado, string Nombre, string Descripcion)
+        {
+
+            if (ValidaSesion(19))
+            {
+                try
+                {
+                    bool EstadoConcepto = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoConcepto = true;
+                    }
+                    else
+                    {
+                        EstadoConcepto = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_EditarConceptoPresupuesto(Id, EstadoConcepto, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaConceptosPresupuesto");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("EditarConceptoPresupuesto", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("EditarPeriodoPresupuesto", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        #endregion
+
+
 
     }
 }

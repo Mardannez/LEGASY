@@ -207,7 +207,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <a href="#" class="btn btn-default btn-flat">Perfil</a>
-                            <a href="@Url.Action("Salir","Login")" class="btn btn-default btn-flat float-right">Salir</a>
+                            <a href="@Url.Action("CerrarSistema","Login")" class="btn btn-default btn-flat float-right">Salir</a>
                         </li>
                     </ul>
                 </li>
@@ -465,13 +465,23 @@
 
                                         }
 
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 18).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaPeriodosPresupuesto",  "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaPeriodosPresupuesto")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Periodos de presupuesto</p>
+                                                    </a>
+                                                </li>
 
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Periodos de presupuesto</p>
-                                            </a>
-                                        </li>
+                                            }
+
+
+
+                                        }
+
                                         <li class="nav-item">
                                             <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                                                 <i class="nav-icon far fa-dot-circle"></i>

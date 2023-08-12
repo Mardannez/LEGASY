@@ -49,27 +49,11 @@ function Online() {
         setTimeout(Online, 5000);
     } else {
        
-            //Muestra el mensaje solo si la direccion actual es distinta a la direccion raiz
-        //bootbox.alert(
-
-        //        "<i class='fa fa-exclamation-triangle fa-5x text-danger'></i> Su sesion ha expirado por favor, reingrese sus credenciales para continuar.",
-        //        function () {
-        //            window.open(Direccion, '_blank')
-        //        }
-        //    );
-
-        //bootbox.alert(
-        //    "<i class='fa fa-exclamation-triangle fa-5x text-danger'></i> Su sesion ha expirado por favor, reingrese sus credenciales para continuar.",
-           
-        //    function () {
-        //        window.open(Direccion, '_blank');
-        //    }
-        //);
-
         bootbox.alert({
-            message: '<p>&nbsp;&nbsp; <i class="fa fa-exclamation-triangle fa-5x text-danger"></i> &nbsp;&nbsp; Su sesion ha expirado por favor, reingrese sus credenciales para continuar </p>',
+            message: '<p>&nbsp;&nbsp; <i class="fa fa-exclamation-triangle fa-5x text-danger"></i> &nbsp;&nbsp; Su sesion ha expirado, por favor reingrese sus credenciales para continuar </p>',
             size: 'large',
             callback: function () {
+
                 window.open(Direccion, '_blank')
             }
         });
