@@ -1,16 +1,19 @@
 ﻿@using LEGASY.Models
-@model Personaliza_Fn_PeriodoSeleccionado_Result
+
 @{
-    ViewBag.Title = "EditarPeriodoPresupuesto";
+    ViewBag.Title = "CreartTiposDemanda";
+
+
 }
 
 
 <br />
 <!-- Content Header (Page header) -->
 <div class="card-header" style="background-color:white;">
-    <div class="col-sm-12">
-        <h1>Editar <strong>@Model.entryDescription</strong></h1>
+    <div class="col-sm-6">
+        <h1>Registrar Tipos de Demandas</h1>
     </div>
+
 
 </div>
 
@@ -23,7 +26,7 @@
 
                 <div class="card-header">
                     <div class="col-sm-10">
-                        <h3 class="card-title">Datos del Periodo</h3>
+                        <h3 class="card-title">Datos de Demanda</h3>
                     </div>
                     <br />
                     <hr />
@@ -50,11 +53,8 @@
 
                             <!-- /.card-header -->
                             <!-- form start -->
-                            @using (Html.BeginForm())
+                            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "TiposDemanda" }))
                             {
-
-                                @Html.Hidden("Id", Model.entryCode);
-
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -68,11 +68,12 @@
                                                 </select>
                                             </div>
 
+
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="Direccion">Nombre</label>
-                                                <input type="text" class="form-control" id="Nombre" name="Nombre" value="@Model.entryName">
+                                                <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Ingresar Procedimiento">
                                             </div>
 
                                         </div>
@@ -83,7 +84,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="Descripcion">Descripcion</label>
-                                                <input type="text" class="form-control" id="Descripcion" name="Descripcion" value="@Model.entryDescription">
+                                                <input type="text" class="form-control" id="Descripcion" name="Descripcion" placeholder="Ingresar Descripcion">
                                             </div>
                                         </div>
                                     </div>
@@ -104,5 +105,63 @@
         </div>
     </div>
 </div>
+
+
+
+@section scripts{
+
+    <script>
+        $(function () {
+
+
+            $('#TiposDemanda').validate({
+                rules: {
+                    Estado: {
+                        required: true
+
+                    },
+                    Nombre: {
+                        required: true,
+                        maxlength: 250
+                    },
+                    Descripcion: {
+                        required: true,
+                        maxlength: 1000
+                    },
+                },
+                messages: {
+                    Estado: {
+                        required: "Por favor seleccione el estado"
+
+                    },
+                    Nombre: {
+                        required: "Por favor ingrese un nombre",
+                        maxlength: "Solo debe tener 250 caracteres",
+                    },
+                    Descripcion: {
+                        required: "Ingrese la descripcion",
+                        maxlength: "Debe tener un maximo de 1000 caracteres"
+                    }
+
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+
+
+        });
+
+    </script>
+
+}
 
 

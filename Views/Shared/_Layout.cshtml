@@ -236,7 +236,7 @@
                         <img src="~/Content/dist/img/avatar4.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"@user.entryDisplayName</a>
+                        <a href="#" class="d-block" @user.entryDisplayName</a>
                     </div>
                 </div>
 
@@ -247,7 +247,6 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                            with font-awesome or any other icon font library -->
-
                         @*Menu de Inicio*@
                         <li class="nav-item @Html.IsOpen(controller: "Home")">
                             <a href="#" class="nav-link @Html.IsSelected(controller: "Home")">
@@ -470,7 +469,7 @@
                                             if (Permiso.Count > 0)
                                             {
                                                 <li class="nav-item">
-                                                    <a href=@Url.Action("ListaPeriodosPresupuesto",  "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaPeriodosPresupuesto")">
+                                                    <a href=@Url.Action("ListaPeriodosPresupuesto", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaPeriodosPresupuesto")">
                                                         <i class="nav-icon far fa-dot-circle"></i>
                                                         <p>Periodos de presupuesto</p>
                                                     </a>
@@ -482,31 +481,55 @@
 
                                         }
 
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Conceptos de presupuesto</p>
-                                            </a>
-                                        </li>
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 19).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaConceptosPresupuesto", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaConceptosPresupuesto")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Conceptos de presupuesto</p>
+                                                    </a>
+                                                </li>
 
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Áreas de especializacion</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Categoria de la demanda</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Tipos de procedimiento</p>
-                                            </a>
-                                        </li>
+                                            }
+
+                                        }
+
+                                        @{
+
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 20).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaTiposProcedimiento", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposProcedimiento")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Tipos de procedimiento</p>
+                                                    </a>
+                                                </li>
+
+
+                                            }
+                                        }
+
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 21).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaTiposDemanda","Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposDemanda")" >
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Tipos de Demanda</p>
+                                                    </a>
+                                                </li>
+                                            }
+
+
+                                        }
+
+
                                         <li class="nav-item">
                                             <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                                                 <i class="nav-icon far fa-dot-circle"></i>
@@ -517,6 +540,12 @@
                                             <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                                                 <i class="nav-icon far fa-dot-circle"></i>
                                                 <p>Tipos de proceso</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                <i class="nav-icon far fa-dot-circle"></i>
+                                                <p>Tipos de Area de Caso</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
@@ -552,7 +581,7 @@
 
                                     </ul>
                                 </li>
-                                            }
+                            }
 
                         };
 
@@ -660,6 +689,9 @@
     <script src="~/Plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/Content/dist/js/adminlte.js"></script>
+    <!-- jquery-validation -->
+    <script src="~/Plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/Plugins/jquery-validation/additional-methods.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <!--main js: Archivo Principal de todo el codigo JavasScript -->
 
