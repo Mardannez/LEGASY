@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "CreartTiposDemanda";
+    ViewBag.Title = "CreartTiposProceso";
 
 
 }
@@ -9,7 +9,7 @@
 <!-- Content Header (Page header) -->
 <div class="card-header" style="background-color:white;">
     <div class="col-sm-6">
-        <h1>Registrar Tipos de Demandas</h1>
+        <h1>Registrar Tipos de Procesos</h1>
     </div>
 
 
@@ -24,7 +24,7 @@
 
                 <div class="card-header">
                     <div class="col-sm-10">
-                        <h3 class="card-title">Datos de Demanda</h3>
+                        <h3 class="card-title">Datos de Procesos</h3>
                     </div>
                     <br />
                     <hr />
@@ -51,7 +51,7 @@
 
                             <!-- /.card-header -->
                             <!-- form start -->
-                            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "TiposDemanda" }))
+                            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "TiposProcesos" }))
                             {
                                 <div class="card-body">
                                     <div class="row">
@@ -112,7 +112,7 @@
         $(function () {
 
 
-            $('#TiposDemanda').validate({
+            $('#TiposProcesos').validate({
                 rules: {
                     Estado: {
                         required: true
@@ -161,5 +161,4 @@
     </script>
 
 }
-
 

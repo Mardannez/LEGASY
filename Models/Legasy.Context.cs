@@ -930,5 +930,153 @@ namespace LEGASY.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_EditarTipoDemanda", idParameter, estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
         }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_ListaTipoInstancia")]
+        public virtual IQueryable<Personaliza_Fn_ListaTipoInstancia_Result> Personaliza_Fn_ListaTipoInstancia()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_ListaTipoInstancia_Result>("[LegasyEntities].[Personaliza_Fn_ListaTipoInstancia]()");
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_TipoInstanciaSeleccionada")]
+        public virtual IQueryable<Personaliza_Fn_TipoInstanciaSeleccionada_Result> Personaliza_Fn_TipoInstanciaSeleccionada(Nullable<long> idTipo)
+        {
+            var idTipoParameter = idTipo.HasValue ?
+                new ObjectParameter("IdTipo", idTipo) :
+                new ObjectParameter("IdTipo", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_TipoInstanciaSeleccionada_Result>("[LegasyEntities].[Personaliza_Fn_TipoInstanciaSeleccionada](@IdTipo)", idTipoParameter);
+        }
+    
+        public virtual int Personaliza_P_CrearInstancia(Nullable<bool> estado, Nullable<long> nivel, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nivelParameter = nivel.HasValue ?
+                new ObjectParameter("Nivel", nivel) :
+                new ObjectParameter("Nivel", typeof(long));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_CrearInstancia", estadoParameter, nivelParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
+    
+        public virtual int Personaliza_P_EditarTipoInstancia(Nullable<long> id, Nullable<bool> estado, Nullable<long> nivel, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nivelParameter = nivel.HasValue ?
+                new ObjectParameter("Nivel", nivel) :
+                new ObjectParameter("Nivel", typeof(long));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_EditarTipoInstancia", idParameter, estadoParameter, nivelParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_ListaTipoProceso")]
+        public virtual IQueryable<Personaliza_Fn_ListaTipoProceso_Result> Personaliza_Fn_ListaTipoProceso()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_ListaTipoProceso_Result>("[LegasyEntities].[Personaliza_Fn_ListaTipoProceso]()");
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_TipoProcesoSeleccionado")]
+        public virtual IQueryable<Personaliza_Fn_TipoProcesoSeleccionado_Result> Personaliza_Fn_TipoProcesoSeleccionado(Nullable<long> idTipo)
+        {
+            var idTipoParameter = idTipo.HasValue ?
+                new ObjectParameter("IdTipo", idTipo) :
+                new ObjectParameter("IdTipo", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_TipoProcesoSeleccionado_Result>("[LegasyEntities].[Personaliza_Fn_TipoProcesoSeleccionado](@IdTipo)", idTipoParameter);
+        }
+    
+        public virtual int Personaliza_P_EditarTipoProceso(Nullable<long> id, Nullable<bool> estado, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_EditarTipoProceso", idParameter, estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
+    
+        public virtual int Personaliza_P_CrearTipoProceso(Nullable<bool> estado, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_CrearTipoProceso", estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
     }
 }

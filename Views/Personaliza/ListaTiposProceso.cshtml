@@ -1,0 +1,134 @@
+﻿@using LEGASY.Models
+@model List<LEGASY.Models.Personaliza_Fn_ListaTipoProceso_Result>
+@{
+    ViewBag.Title = "ListaTiposProceso";
+}
+
+<br />
+<!-- Content Header (Page header) -->
+<div class="card-header" style="background-color:white;">
+    <div class="col-sm-6">
+        <h1>Tipos de Proceso</h1>
+    </div>
+</div>
+
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <div class="row mb-2">
+                        <div class="col-sm-11">
+                            <h3 class="card-title">Listado de Tipos de Proceso</h3>
+                        </div>
+                        <div class="col-sm-1">
+
+                            @Html.ActionLink("Registrar nuevo", "CrearTiposProceso", null, new { @class = "btn btn-outline-primary btn-block btn-xs" })
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pad table-responsive">
+
+                    <table id="ListaProcesos" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Estado</th>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>FechaCreacion</th>
+                                <th></th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                string Estado;
+                                <tr>
+                                    <td>@item.entryCode</td>
+                                    <td>
+                                        @if (item.entryCodeStatus == true)
+                                        {
+                                            Estado = "Activo";
+                                        }
+                                        else
+                                        {
+                                            Estado = "Inactivo";
+                                        }
+                                        @Estado
+                                    </td>
+                                    <td>@item.entryName</td>
+                                    <td>@item.entryDescription</td>
+                                    <td>@item.dateCreate</td>
+                                    <td>
+                                        <a class="btn btn-success btn-block" href="@Url.Action("EditarTipoProceso", "Personaliza", new {Id = item.entryCode})">
+                                            <i class="fas fa-edit"></i> Editar
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+                    @*Todo el Contenido Aqui*@
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+        $(function () {
+
+            $("#ListaProcesos").DataTable({
+                "responsive": true, "lengthChange": true, "autoWidth": true,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)')
+
+
+
+        });
+
+    </script>
+
+}
+
+

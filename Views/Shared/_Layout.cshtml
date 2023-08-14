@@ -512,36 +512,50 @@
 
                                             }
                                         }
-
                                         @{
                                             Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 21).ToList();
                                             if (Permiso.Count > 0)
                                             {
 
                                                 <li class="nav-item">
-                                                    <a href=@Url.Action("ListaTiposDemanda","Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposDemanda")" >
+                                                    <a href=@Url.Action("ListaTiposDemanda","Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposDemanda")">
                                                         <i class="nav-icon far fa-dot-circle"></i>
                                                         <p>Tipos de Demanda</p>
                                                     </a>
                                                 </li>
                                             }
 
+                                        }
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 22).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaTiposInstancia","Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposInstancia")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Tipos de instancia</p>
+                                                    </a>
+                                                </li>
+                                            }
+
+                                        }
+
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 23).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaTiposProceso","Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposProceso")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Tipos de proceso</p>
+                                                    </a>
+                                                </li>
+
+                                            }
 
                                         }
 
 
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Tipos de instancia</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Tipos de proceso</p>
-                                            </a>
-                                        </li>
                                         <li class="nav-item">
                                             <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                                                 <i class="nav-icon far fa-dot-circle"></i>
@@ -581,7 +595,7 @@
 
                                     </ul>
                                 </li>
-                            }
+                                            }
 
                         };
 

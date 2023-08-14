@@ -259,6 +259,12 @@
     <Compile Include="Models\Personaliza_Fn_ListaTipoDemanda_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Personaliza_Fn_ListaTipoInstancia_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Personaliza_Fn_ListaTipoProceso_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Personaliza_Fn_ListaTiposProcedimiento_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
@@ -274,7 +280,13 @@
     <Compile Include="Models\Personaliza_Fn_TipoDemandaSeleccionada_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Personaliza_Fn_TipoInstanciaSeleccionada_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Personaliza_Fn_TipoProcedimientoSeleccionado_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Personaliza_Fn_TipoProcesoSeleccionado_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Seguridad_Fn_ModuloSeleccionado_Result.cs">
@@ -1245,6 +1257,12 @@
     <Content Include="Views\Personaliza\ListaTiposDemanda.cshtml" />
     <Content Include="Views\Personaliza\CrearTiposDemanda.cshtml" />
     <Content Include="Views\Personaliza\EditarTipoDemanda.cshtml" />
+    <Content Include="Views\Personaliza\ListaTiposInstancia.cshtml" />
+    <Content Include="Views\Personaliza\CrearTiposIntancia.cshtml" />
+    <Content Include="Views\Personaliza\EditarTipoInstancia.cshtml" />
+    <Content Include="Views\Personaliza\ListaTiposProceso.cshtml" />
+    <Content Include="Views\Personaliza\CrearTiposProceso.cshtml" />
+    <Content Include="Views\Personaliza\EditarTipoProceso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

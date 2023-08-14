@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "CreartTiposDemanda";
+﻿@using LEGASY.Models
+@{
+    ViewBag.Title = "CreartTiposInstancia";
 
 
 }
@@ -9,7 +10,7 @@
 <!-- Content Header (Page header) -->
 <div class="card-header" style="background-color:white;">
     <div class="col-sm-6">
-        <h1>Registrar Tipos de Demandas</h1>
+        <h1>Registrar Tipos de Instancias</h1>
     </div>
 
 
@@ -24,7 +25,7 @@
 
                 <div class="card-header">
                     <div class="col-sm-10">
-                        <h3 class="card-title">Datos de Demanda</h3>
+                        <h3 class="card-title">Datos de Instancia</h3>
                     </div>
                     <br />
                     <hr />
@@ -51,7 +52,7 @@
 
                             <!-- /.card-header -->
                             <!-- form start -->
-                            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "TiposDemanda" }))
+                            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "TiposInstancia" }))
                             {
                                 <div class="card-body">
                                     <div class="row">
@@ -70,8 +71,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="Direccion">Nombre</label>
-                                                <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Ingresar Procedimiento">
+                                                <label for="Nivel">Nivel</label>
+                                                <input type="text" class="form-control" id="Nivel" name="Nivel" placeholder="Ingresar Nivel">
                                             </div>
 
                                         </div>
@@ -79,7 +80,15 @@
 
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="Nombre">Nombre</label>
+                                                <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Ingresar Nombre">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="Descripcion">Descripcion</label>
                                                 <input type="text" class="form-control" id="Descripcion" name="Descripcion" placeholder="Ingresar Descripcion">
@@ -112,7 +121,7 @@
         $(function () {
 
 
-            $('#TiposDemanda').validate({
+            $('#TiposInstancia').validate({
                 rules: {
                     Estado: {
                         required: true
@@ -126,6 +135,10 @@
                         required: true,
                         maxlength: 1000
                     },
+                    Nivel: {
+                        required: true
+                       
+                    }
                 },
                 messages: {
                     Estado: {
@@ -161,5 +174,6 @@
     </script>
 
 }
+
 
 

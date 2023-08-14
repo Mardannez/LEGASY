@@ -1051,5 +1051,378 @@ namespace LEGASY.Controllers
 
         #endregion
 
+        #region  ################ Tipos de Instancia  #################
+
+        public ActionResult ListaTiposInstancia(string respuesta)
+        {
+            if (ValidaSesion(22))
+            {
+                List<Personaliza_Fn_ListaTipoInstancia_Result> TiposInstancias = new List<Personaliza_Fn_ListaTipoInstancia_Result>();
+
+                TiposInstancias = db.Personaliza_Fn_ListaTipoInstancia().ToList();
+
+                return View(TiposInstancias);
+
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        public ActionResult CrearTiposIntancia(string respuesta)
+        {
+
+            if (ValidaSesion(22))
+            {
+                if (respuesta != null)
+                {
+                    ViewBag.Respuesta = respuesta;
+                }
+                return View();
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult CrearTiposIntancia(int Estado, Int64 Nivel,  string Nombre, string Descripcion)
+        {
+            if (ValidaSesion(22))
+            {
+                try
+                {
+                    bool EstadoTipo = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoTipo = true;
+                    }
+                    else
+                    {
+                        EstadoTipo = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_CrearInstancia(EstadoTipo, Nivel, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposInstancia");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("CrearTiposInstancia", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("CrearTiposInstancia", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+
+        public ActionResult EditarTipoInstancia(int Id)
+        {
+
+            if (ValidaSesion(22))
+            {
+
+                Personaliza_Fn_TipoInstanciaSeleccionada_Result TipoInstancia = new Personaliza_Fn_TipoInstanciaSeleccionada_Result();
+
+                TipoInstancia = db.Personaliza_Fn_TipoInstanciaSeleccionada(Id).FirstOrDefault();
+
+                return View(TipoInstancia);
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult EditarTipoInstancia(Int64 Id, int Estado, Int64 Nivel,  string Nombre, string Descripcion)
+        {
+
+            if (ValidaSesion(22))
+            {
+                try
+                {
+                    bool EstadoInstancia = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoInstancia = true;
+                    }
+                    else
+                    {
+                        EstadoInstancia = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_EditarTipoInstancia(Id, EstadoInstancia, Nivel, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposInstancia");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("EditarTipoInstancia", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("EditarTipoInstancia", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        #endregion
+
+        #region  ################ Tipos de Proceso  #################
+
+        public ActionResult ListaTiposProceso(string respuesta)
+        {
+            if (ValidaSesion(23))
+            {
+                List<Personaliza_Fn_ListaTipoProceso_Result> TiposProceso = new List<Personaliza_Fn_ListaTipoProceso_Result>();
+
+                TiposProceso = db.Personaliza_Fn_ListaTipoProceso().ToList();
+
+                return View(TiposProceso);
+
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        public ActionResult CrearTiposProceso(string respuesta)
+        {
+
+            if (ValidaSesion(23))
+            {
+                if (respuesta != null)
+                {
+                    ViewBag.Respuesta = respuesta;
+                }
+                return View();
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult CrearTiposProceso(int Estado, string Nombre, string Descripcion)
+        {
+            if (ValidaSesion(23))
+            {
+                try
+                {
+                    bool EstadoTipo = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoTipo = true;
+                    }
+                    else
+                    {
+                        EstadoTipo = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_CrearTipoProceso(EstadoTipo, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposProceso");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("CrearTiposProceso", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("CrearTiposProceso", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+
+        public ActionResult EditarTipoProceso(int Id)
+        {
+
+            if (ValidaSesion(23))
+            {
+
+                Personaliza_Fn_TipoProcesoSeleccionado_Result TipoProceso = new Personaliza_Fn_TipoProcesoSeleccionado_Result();
+
+                TipoProceso = db.Personaliza_Fn_TipoProcesoSeleccionado(Id).FirstOrDefault();
+
+                return View(TipoProceso);
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult EditarTipoProceso(Int64 Id, int Estado, string Nombre, string Descripcion)
+        {
+
+            if (ValidaSesion(23))
+            {
+                try
+                {
+                    bool EstadoProceso = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoProceso = true;
+                    }
+                    else
+                    {
+                        EstadoProceso = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_EditarTipoProceso(Id, EstadoProceso, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposProceso");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("EditarTipoProceso", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("EditarTipoProceso", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        #endregion
+
+
     }
 }
