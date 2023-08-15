@@ -56,12 +56,12 @@ namespace LEGASY.Controllers
             try
             {
               
-                long IdUsuario = (long)Session["UsuarioId"];
+               
 
                 ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
                 ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
 
-                db.Personaliza_P_GuardarEmpresas(Nombre, Descripcion, Persona, Direccion, Identidad1, Identidad2, Identidad3, Telefono1, Telefono2, Telefono3, Correo, Comentarios, IdUsuario, DateTime.Now,  Respuesta, Mensaje);
+                db.Personaliza_P_GuardarEmpresas(Nombre, Descripcion, Persona, Direccion, Identidad1, Identidad2, Identidad3, Telefono1, Telefono2, Telefono3, Correo, Comentarios, this.UsuarioActual.entryCode, DateTime.Now,  Respuesta, Mensaje);
 
                 int RespValue = Convert.ToInt32(Respuesta.Value);
                 string MenValue = Convert.ToString(Mensaje.Value);
@@ -122,12 +122,12 @@ namespace LEGASY.Controllers
             {
                 try
                 {
-                    long IdUsuario = (long)Session["UsuarioId"];
+                
 
                     ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
                     ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
 
-                    db.Personaliza_P_EditarEmpresas(IdEmpresa, Nombre, Descripcion, Persona, Direccion, Identidad1, Identidad2, Identidad3, Telefono1, Telefono2, Telefono3, Correo, Comentarios, IdUsuario, DateTime.Now, Respuesta, Mensaje);
+                    db.Personaliza_P_EditarEmpresas(IdEmpresa, Nombre, Descripcion, Persona, Direccion, Identidad1, Identidad2, Identidad3, Telefono1, Telefono2, Telefono3, Correo, Comentarios, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
 
                     int RespValue = Convert.ToInt32(Respuesta.Value);
                     string MenValue = Convert.ToString(Mensaje.Value);
@@ -1423,6 +1423,398 @@ namespace LEGASY.Controllers
 
         #endregion
 
+
+        #region  ################ Tipos de Parte de Casos  #################
+
+        public ActionResult ListaTiposParte(string respuesta)
+        {
+            if (ValidaSesion(24))
+            {
+                List<Personaliza_Fn_ListaTipoParte_Result> TiposPartes = new List<Personaliza_Fn_ListaTipoParte_Result>();
+
+                TiposPartes = db.Personaliza_Fn_ListaTipoParte().ToList();
+
+               
+                return View(TiposPartes);
+
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        public ActionResult CrearTiposParte(string respuesta)
+        {
+
+            if (ValidaSesion(24))
+            {
+                if (respuesta != null)
+                {
+                    ViewBag.Respuesta = respuesta;
+                }
+                List<SelectListItem> TipoParte = new List<SelectListItem>();
+                TipoParte.Add(new SelectListItem { Value = "", Text = "[-- Seleccionar Tipo de Parte --]" });
+                foreach (var item in db.Personaliza_Fn_DropDown_TipoParte().ToList())
+                {
+                    TipoParte.Add(new SelectListItem { Value = item.entryCode.ToString(), Text = item.entryName.ToString() });
+                }
+
+                ViewBag.TiposdeParte = TipoParte;
+
+                return View();
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult CrearTiposParte(Int64 TiposdeParte, int Estado, string Nombre, string Descripcion)
+        {
+            if (ValidaSesion(24))
+            {
+                try
+                {
+                    bool EstadoTipo = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoTipo = true;
+                    }
+                    else
+                    {
+                        EstadoTipo = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_CrearTipoParte(TiposdeParte, EstadoTipo, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposParte");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("CrearTiposParte", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("CrearTiposParte", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+
+        public ActionResult EditarTipoParte(int Id)
+        {
+
+            if (ValidaSesion(24))
+            {
+
+                Personaliza_Fn_TipoParteSeleccionada_Result TipoParte = new Personaliza_Fn_TipoParteSeleccionada_Result();
+
+                TipoParte = db.Personaliza_Fn_TipoParteSeleccionada(Id).FirstOrDefault();
+
+
+                List<SelectListItem> TipoParteDrop = new List<SelectListItem>();
+                TipoParteDrop.Add(new SelectListItem { Value = "", Text = "[-- Seleccionar Tipo de Parte --]" });
+                foreach (var item in db.Personaliza_Fn_DropDown_TipoParte().ToList())
+                {
+                    TipoParteDrop.Add(new SelectListItem { Value = item.entryCode.ToString(), Text = item.entryName.ToString() });
+                }
+
+                ViewBag.TiposdeParte = TipoParteDrop;
+
+                return View(TipoParte);
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult EditarTipoParte(Int64 Id, Int64 TiposdeParte, int Estado, string Nombre, string Descripcion)
+        {
+
+            if (ValidaSesion(24))
+            {
+                try
+                {
+                    bool EstadoProceso = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoProceso = true;
+                    }
+                    else
+                    {
+                        EstadoProceso = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_EditarTipoParte(Id, TiposdeParte, EstadoProceso, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposParte");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("EditarTipoParte", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("EditarTipoParte", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        #endregion
+
+        #region  ################ Tipos de Proceso  #################
+
+        public ActionResult ListaTiposAreaCaso(string respuesta)
+        {
+            if (ValidaSesion(24))
+            {
+                List<Personaliza_Fn_ListaAreaCaso_Result> AreaCaso = new List<Personaliza_Fn_ListaAreaCaso_Result>();
+
+                AreaCaso = db.Personaliza_Fn_ListaAreaCaso().ToList();
+
+                return View(AreaCaso);
+
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        public ActionResult CrearTiposAreaCaso(string respuesta)
+        {
+
+            if (ValidaSesion(24))
+            {
+                if (respuesta != null)
+                {
+                    ViewBag.Respuesta = respuesta;
+                }
+                return View();
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult CrearTiposAreaCaso(int Estado, string Nombre, string Descripcion)
+        {
+            if (ValidaSesion(24))
+            {
+                try
+                {
+                    bool EstadoTipo = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoTipo = true;
+                    }
+                    else
+                    {
+                        EstadoTipo = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_CrearTipoaAreaCaso(EstadoTipo, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposAreaCaso");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("CrearTiposAreaCaso", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("CrearTiposAreaCaso", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+
+        public ActionResult EditarTipoAreaCaso(int Id)
+        {
+
+            if (ValidaSesion(24))
+            {
+
+                Personaliza_Fn_TipoAreaCasoSeleccionado_Result TipoAreaCaso = new Personaliza_Fn_TipoAreaCasoSeleccionado_Result();
+
+                TipoAreaCaso = db.Personaliza_Fn_TipoAreaCasoSeleccionado(Id).FirstOrDefault();
+
+                return View(TipoAreaCaso);
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult EditarTipoAreaCaso(Int64 Id, int Estado, string Nombre, string Descripcion)
+        {
+
+            if (ValidaSesion(24))
+            {
+                try
+                {
+                    bool EstadoProceso = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoProceso = true;
+                    }
+                    else
+                    {
+                        EstadoProceso = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_EditarTipoAreaCaso(Id, EstadoProceso, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposAreaCaso");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("EditarTipoAreaCaso", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("EditarTipoAreaCaso", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        #endregion
 
     }
 }

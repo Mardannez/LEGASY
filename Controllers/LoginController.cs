@@ -52,7 +52,7 @@ namespace LEGASY.Controllers
                     else
                     {
 
-                        Session["User"] = DatosUsuario;
+                        //Session["User"] = DatosUsuario;
                         this.CreaSesion(Convert.ToInt32(DatosUsuario.entryCode));
                         return RedirectToAction("Index", "Home");
                     }

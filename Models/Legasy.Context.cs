@@ -1078,5 +1078,159 @@ namespace LEGASY.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_CrearTipoProceso", estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
         }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_ListaTipoParte")]
+        public virtual IQueryable<Personaliza_Fn_ListaTipoParte_Result> Personaliza_Fn_ListaTipoParte()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_ListaTipoParte_Result>("[LegasyEntities].[Personaliza_Fn_ListaTipoParte]()");
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_TipoParteSeleccionada")]
+        public virtual IQueryable<Personaliza_Fn_TipoParteSeleccionada_Result> Personaliza_Fn_TipoParteSeleccionada(Nullable<long> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_TipoParteSeleccionada_Result>("[LegasyEntities].[Personaliza_Fn_TipoParteSeleccionada](@Id)", idParameter);
+        }
+    
+        public virtual int Personaliza_P_CrearTipoParte(Nullable<long> idTipoParte, Nullable<bool> estado, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var idTipoParteParameter = idTipoParte.HasValue ?
+                new ObjectParameter("IdTipoParte", idTipoParte) :
+                new ObjectParameter("IdTipoParte", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_CrearTipoParte", idTipoParteParameter, estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
+    
+        public virtual int Personaliza_P_EditarTipoParte(Nullable<long> id, Nullable<long> idTipoParte, Nullable<bool> estado, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(long));
+    
+            var idTipoParteParameter = idTipoParte.HasValue ?
+                new ObjectParameter("IdTipoParte", idTipoParte) :
+                new ObjectParameter("IdTipoParte", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_EditarTipoParte", idParameter, idTipoParteParameter, estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_DropDown_TipoParte")]
+        public virtual IQueryable<Personaliza_Fn_DropDown_TipoParte_Result> Personaliza_Fn_DropDown_TipoParte()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_DropDown_TipoParte_Result>("[LegasyEntities].[Personaliza_Fn_DropDown_TipoParte]()");
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_ListaAreaCaso")]
+        public virtual IQueryable<Personaliza_Fn_ListaAreaCaso_Result> Personaliza_Fn_ListaAreaCaso()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_ListaAreaCaso_Result>("[LegasyEntities].[Personaliza_Fn_ListaAreaCaso]()");
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_TipoAreaCasoSeleccionado")]
+        public virtual IQueryable<Personaliza_Fn_TipoAreaCasoSeleccionado_Result> Personaliza_Fn_TipoAreaCasoSeleccionado(Nullable<long> idTipo)
+        {
+            var idTipoParameter = idTipo.HasValue ?
+                new ObjectParameter("IdTipo", idTipo) :
+                new ObjectParameter("IdTipo", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_TipoAreaCasoSeleccionado_Result>("[LegasyEntities].[Personaliza_Fn_TipoAreaCasoSeleccionado](@IdTipo)", idTipoParameter);
+        }
+    
+        public virtual int Personaliza_P_CrearTipoaAreaCaso(Nullable<bool> estado, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_CrearTipoaAreaCaso", estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
+    
+        public virtual int Personaliza_P_EditarTipoAreaCaso(Nullable<long> id, Nullable<bool> estado, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_EditarTipoAreaCaso", idParameter, estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
     }
 }

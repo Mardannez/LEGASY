@@ -236,7 +236,7 @@ namespace LEGASY.Controllers
                 else
                 {
                     ViewBag.Respuesta = MenValue;
-                    return RedirectToAction("GuardarPermiso", new { @respuesta = MenValue.ToString() });
+                    return RedirectToAction("GuardarPermiso", new { IdModulo = IdModulo, @respuesta = MenValue.ToString() });
 
                 }
             }

@@ -554,14 +554,35 @@
                                             }
 
                                         }
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 24).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaTiposParte","Personaliza") class="nav-link  @Html.IsSelected(controller: "Personaliza", action: "ListaTiposParte")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Tipos de Parte</p>
+                                                    </a>
+                                                </li>
+
+                                            }
+                                        }
+                                        @{
+
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 25).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaTiposAreaCaso","Personaliza")  class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposAreaCaso")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Tipos de Area de Caso</p>
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
 
 
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Tipos de Area de Caso</p>
-                                            </a>
-                                        </li>
                                         <li class="nav-item">
                                             <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                                                 <i class="nav-icon far fa-dot-circle"></i>
@@ -574,12 +595,7 @@
                                                 <p>Tipos de pretensión</p>
                                             </a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Tipos de participante</p>
-                                            </a>
-                                        </li>
+
                                         <li class="nav-item">
                                             <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                                                 <i class="nav-icon far fa-dot-circle"></i>

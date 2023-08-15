@@ -241,7 +241,13 @@
     <Compile Include="Models\Personaliza_Fn_CuentasdeBanco_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Personaliza_Fn_DropDown_TipoParte_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Personaliza_Fn_EmpresaSeleccionada_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Personaliza_Fn_ListaAreaCaso_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_ListaConceptosPresupuesto_Result.cs">
@@ -262,6 +268,9 @@
     <Compile Include="Models\Personaliza_Fn_ListaTipoInstancia_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Personaliza_Fn_ListaTipoParte_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Personaliza_Fn_ListaTipoProceso_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
@@ -274,6 +283,9 @@
     <Compile Include="Models\Personaliza_Fn_PeriodoSeleccionado_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Personaliza_Fn_TipoAreaCasoSeleccionado_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Personaliza_Fn_TipoCuenta_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
@@ -281,6 +293,9 @@
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_TipoInstanciaSeleccionada_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Personaliza_Fn_TipoParteSeleccionada_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_TipoProcedimientoSeleccionado_Result.cs">
@@ -1263,6 +1278,12 @@
     <Content Include="Views\Personaliza\ListaTiposProceso.cshtml" />
     <Content Include="Views\Personaliza\CrearTiposProceso.cshtml" />
     <Content Include="Views\Personaliza\EditarTipoProceso.cshtml" />
+    <Content Include="Views\Personaliza\ListaTiposParte.cshtml" />
+    <Content Include="Views\Personaliza\EditarTipoParte.cshtml" />
+    <Content Include="Views\Personaliza\CrearTiposParte.cshtml" />
+    <Content Include="Views\Personaliza\ListaTiposAreaCaso.cshtml" />
+    <Content Include="Views\Personaliza\CrearTiposAreaCaso.cshtml" />
+    <Content Include="Views\Personaliza\EditarTipoAreaCaso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

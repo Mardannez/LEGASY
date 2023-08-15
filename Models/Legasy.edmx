@@ -884,6 +884,17 @@
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="Personaliza_Fn_DropDown_TipoParte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="entryCode" Type="bigint" Nullable="false" />
+                <Property Name="entryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryDescription" Type="nvarchar" MaxLength="250" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="Personaliza_Fn_EmpresaSeleccionada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEmpresa" Type="bigint" Mode="In" />
           <ReturnType>
@@ -906,6 +917,20 @@
                 <Property Name="userIDupdate" Type="bigint" />
                 <Property Name="dateCreate" Type="datetime" />
                 <Property Name="dateUpdate" Type="datetime" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Personaliza_Fn_ListaAreaCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="entryCode" Type="bigint" Nullable="false" />
+                <Property Name="entryCodeStatus" Type="bit" Nullable="false" />
+                <Property Name="entryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryDescription" Type="nvarchar" MaxLength="1000" />
+                <Property Name="userIDcreate" Type="bigint" />
+                <Property Name="dateCreate" Type="datetime" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -1025,6 +1050,22 @@
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="Personaliza_Fn_ListaTipoParte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="entryCode" Type="bigint" Nullable="false" />
+                <Property Name="entryCodePartType" Type="bigint" Nullable="false" />
+                <Property Name="TipoParteNombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryCodeStatus" Type="bit" Nullable="false" />
+                <Property Name="entryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryDescription" Type="nvarchar" MaxLength="250" />
+                <Property Name="userIDcreate" Type="bigint" />
+                <Property Name="dateCreate" Type="datetime" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="Personaliza_Fn_ListaTipoProceso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
@@ -1081,6 +1122,21 @@
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="Personaliza_Fn_TipoAreaCasoSeleccionado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipo" Type="bigint" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="entryCode" Type="bigint" Nullable="false" />
+                <Property Name="entryCodeStatus" Type="bit" Nullable="false" />
+                <Property Name="entryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryDescription" Type="nvarchar" MaxLength="1000" />
+                <Property Name="userIDcreate" Type="bigint" />
+                <Property Name="dateCreate" Type="datetime" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="Personaliza_Fn_TipoCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
@@ -1115,6 +1171,23 @@
                 <Property Name="entryCode" Type="bigint" Nullable="false" />
                 <Property Name="entryCodeStatus" Type="bit" Nullable="false" />
                 <Property Name="entryLevel" Type="bigint" Nullable="false" />
+                <Property Name="entryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryDescription" Type="nvarchar" MaxLength="250" />
+                <Property Name="userIDcreate" Type="bigint" />
+                <Property Name="dateCreate" Type="datetime" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Personaliza_Fn_TipoParteSeleccionada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="entryCode" Type="bigint" Nullable="false" />
+                <Property Name="entryCodePartType" Type="bigint" Nullable="false" />
+                <Property Name="TipoParteNombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryCodeStatus" Type="bit" Nullable="false" />
                 <Property Name="entryName" Type="nvarchar" MaxLength="50" Nullable="false" />
                 <Property Name="entryDescription" Type="nvarchar" MaxLength="250" />
                 <Property Name="userIDcreate" Type="bigint" />
@@ -1194,7 +1267,26 @@
           <Parameter Name="MENSAJE" Type="varchar(max)" Mode="InOut" />
           <Parameter Name="RESPUESTA" Type="varchar(max)" Mode="InOut" />
         </Function>
+        <Function Name="Personaliza_P_CrearTipoaAreaCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
+          <Parameter Name="FechaRegistro" Type="datetime" Mode="In" />
+          <Parameter Name="MENSAJE" Type="varchar(max)" Mode="InOut" />
+          <Parameter Name="RESPUESTA" Type="varchar(max)" Mode="InOut" />
+        </Function>
         <Function Name="Personaliza_P_CrearTipoDemanda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
+          <Parameter Name="FechaRegistro" Type="datetime" Mode="In" />
+          <Parameter Name="MENSAJE" Type="varchar(max)" Mode="InOut" />
+          <Parameter Name="RESPUESTA" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="Personaliza_P_CrearTipoParte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoParte" Type="bigint" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
           <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
           <Parameter Name="Descripcion" Type="nvarchar" Mode="In" />
@@ -1260,6 +1352,16 @@
           <Parameter Name="MENSAJE" Type="varchar(max)" Mode="InOut" />
           <Parameter Name="RESPUESTA" Type="varchar(max)" Mode="InOut" />
         </Function>
+        <Function Name="Personaliza_P_EditarTipoAreaCaso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
+          <Parameter Name="FechaRegistro" Type="datetime" Mode="In" />
+          <Parameter Name="MENSAJE" Type="varchar(max)" Mode="InOut" />
+          <Parameter Name="RESPUESTA" Type="varchar(max)" Mode="InOut" />
+        </Function>
         <Function Name="Personaliza_P_EditarTipoDemanda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="bigint" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
@@ -1274,6 +1376,17 @@
           <Parameter Name="Id" Type="bigint" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
           <Parameter Name="Nivel" Type="bigint" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
+          <Parameter Name="FechaRegistro" Type="datetime" Mode="In" />
+          <Parameter Name="MENSAJE" Type="varchar(max)" Mode="InOut" />
+          <Parameter Name="RESPUESTA" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="Personaliza_P_EditarTipoParte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+          <Parameter Name="IdTipoParte" Type="bigint" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
           <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
           <Parameter Name="Descripcion" Type="nvarchar" Mode="In" />
           <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
@@ -3041,6 +3154,55 @@
             <Parameter Name="MENSAJE" Mode="InOut" Type="String" />
             <Parameter Name="RESPUESTA" Mode="InOut" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Personaliza_Fn_ListaTipoParte" IsComposable="true" ReturnType="Collection(LegasyModel.Personaliza_Fn_ListaTipoParte_Result)" />
+          <FunctionImport Name="Personaliza_Fn_TipoParteSeleccionada" IsComposable="true" ReturnType="Collection(LegasyModel.Personaliza_Fn_TipoParteSeleccionada_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="Personaliza_P_CrearTipoParte">
+            <Parameter Name="IdTipoParte" Mode="In" Type="Int64" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+            <Parameter Name="FechaRegistro" Mode="In" Type="DateTime" />
+            <Parameter Name="MENSAJE" Mode="InOut" Type="String" />
+            <Parameter Name="RESPUESTA" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Personaliza_P_EditarTipoParte">
+            <Parameter Name="Id" Mode="In" Type="Int64" />
+            <Parameter Name="IdTipoParte" Mode="In" Type="Int64" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+            <Parameter Name="FechaRegistro" Mode="In" Type="DateTime" />
+            <Parameter Name="MENSAJE" Mode="InOut" Type="String" />
+            <Parameter Name="RESPUESTA" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Personaliza_Fn_DropDown_TipoParte" IsComposable="true" ReturnType="Collection(LegasyModel.Personaliza_Fn_DropDown_TipoParte_Result)" />
+          <FunctionImport Name="Personaliza_Fn_ListaAreaCaso" IsComposable="true" ReturnType="Collection(LegasyModel.Personaliza_Fn_ListaAreaCaso_Result)" />
+          <FunctionImport Name="Personaliza_Fn_TipoAreaCasoSeleccionado" IsComposable="true" ReturnType="Collection(LegasyModel.Personaliza_Fn_TipoAreaCasoSeleccionado_Result)">
+            <Parameter Name="IdTipo" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="Personaliza_P_CrearTipoaAreaCaso">
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+            <Parameter Name="FechaRegistro" Mode="In" Type="DateTime" />
+            <Parameter Name="MENSAJE" Mode="InOut" Type="String" />
+            <Parameter Name="RESPUESTA" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Personaliza_P_EditarTipoAreaCaso">
+            <Parameter Name="Id" Mode="In" Type="Int64" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+            <Parameter Name="FechaRegistro" Mode="In" Type="DateTime" />
+            <Parameter Name="MENSAJE" Mode="InOut" Type="String" />
+            <Parameter Name="RESPUESTA" Mode="InOut" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Seguridad_Fn_MostrarModulos_Result">
           <Property Type="Int64" Name="entryCode" Nullable="false" />
@@ -3343,6 +3505,47 @@
           <Property Type="Boolean" Name="entryCodeStatus" Nullable="false" />
           <Property Type="String" Name="entryName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="entryDescription" Nullable="true" MaxLength="250" />
+          <Property Type="Int64" Name="userIDcreate" Nullable="true" />
+          <Property Type="DateTime" Name="dateCreate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Personaliza_Fn_ListaTipoParte_Result">
+          <Property Type="Int64" Name="entryCode" Nullable="false" />
+          <Property Type="Int64" Name="entryCodePartType" Nullable="false" />
+          <Property Type="String" Name="TipoParteNombre" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="entryCodeStatus" Nullable="false" />
+          <Property Type="String" Name="entryName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="entryDescription" Nullable="true" MaxLength="250" />
+          <Property Type="Int64" Name="userIDcreate" Nullable="true" />
+          <Property Type="DateTime" Name="dateCreate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Personaliza_Fn_TipoParteSeleccionada_Result">
+          <Property Type="Int64" Name="entryCode" Nullable="false" />
+          <Property Type="Int64" Name="entryCodePartType" Nullable="false" />
+          <Property Type="String" Name="TipoParteNombre" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="entryCodeStatus" Nullable="false" />
+          <Property Type="String" Name="entryName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="entryDescription" Nullable="true" MaxLength="250" />
+          <Property Type="Int64" Name="userIDcreate" Nullable="true" />
+          <Property Type="DateTime" Name="dateCreate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Personaliza_Fn_DropDown_TipoParte_Result">
+          <Property Type="Int64" Name="entryCode" Nullable="false" />
+          <Property Type="String" Name="entryName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="entryDescription" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="Personaliza_Fn_ListaAreaCaso_Result">
+          <Property Type="Int64" Name="entryCode" Nullable="false" />
+          <Property Type="Boolean" Name="entryCodeStatus" Nullable="false" />
+          <Property Type="String" Name="entryName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="entryDescription" Nullable="true" MaxLength="1000" />
+          <Property Type="Int64" Name="userIDcreate" Nullable="true" />
+          <Property Type="DateTime" Name="dateCreate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Personaliza_Fn_TipoAreaCasoSeleccionado_Result">
+          <Property Type="Int64" Name="entryCode" Nullable="false" />
+          <Property Type="Boolean" Name="entryCodeStatus" Nullable="false" />
+          <Property Type="String" Name="entryName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="entryDescription" Nullable="true" MaxLength="1000" />
           <Property Type="Int64" Name="userIDcreate" Nullable="true" />
           <Property Type="DateTime" Name="dateCreate" Nullable="true" Precision="23" />
         </ComplexType>
@@ -4315,6 +4518,71 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Personaliza_P_EditarTipoProceso" FunctionName="LegasyModel.Store.Personaliza_P_EditarTipoProceso" />
           <FunctionImportMapping FunctionImportName="Personaliza_P_CrearTipoProceso" FunctionName="LegasyModel.Store.Personaliza_P_CrearTipoProceso" />
+          <FunctionImportMapping FunctionImportName="Personaliza_Fn_ListaTipoParte" FunctionName="LegasyModel.Store.Personaliza_Fn_ListaTipoParte">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LegasyModel.Personaliza_Fn_ListaTipoParte_Result">
+                <ScalarProperty Name="entryCode" ColumnName="entryCode" />
+                <ScalarProperty Name="entryCodePartType" ColumnName="entryCodePartType" />
+                <ScalarProperty Name="TipoParteNombre" ColumnName="TipoParteNombre" />
+                <ScalarProperty Name="entryCodeStatus" ColumnName="entryCodeStatus" />
+                <ScalarProperty Name="entryName" ColumnName="entryName" />
+                <ScalarProperty Name="entryDescription" ColumnName="entryDescription" />
+                <ScalarProperty Name="userIDcreate" ColumnName="userIDcreate" />
+                <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Personaliza_Fn_TipoParteSeleccionada" FunctionName="LegasyModel.Store.Personaliza_Fn_TipoParteSeleccionada">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LegasyModel.Personaliza_Fn_TipoParteSeleccionada_Result">
+                <ScalarProperty Name="entryCode" ColumnName="entryCode" />
+                <ScalarProperty Name="entryCodePartType" ColumnName="entryCodePartType" />
+                <ScalarProperty Name="TipoParteNombre" ColumnName="TipoParteNombre" />
+                <ScalarProperty Name="entryCodeStatus" ColumnName="entryCodeStatus" />
+                <ScalarProperty Name="entryName" ColumnName="entryName" />
+                <ScalarProperty Name="entryDescription" ColumnName="entryDescription" />
+                <ScalarProperty Name="userIDcreate" ColumnName="userIDcreate" />
+                <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Personaliza_P_CrearTipoParte" FunctionName="LegasyModel.Store.Personaliza_P_CrearTipoParte" />
+          <FunctionImportMapping FunctionImportName="Personaliza_P_EditarTipoParte" FunctionName="LegasyModel.Store.Personaliza_P_EditarTipoParte" />
+          <FunctionImportMapping FunctionImportName="Personaliza_Fn_DropDown_TipoParte" FunctionName="LegasyModel.Store.Personaliza_Fn_DropDown_TipoParte">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LegasyModel.Personaliza_Fn_DropDown_TipoParte_Result">
+                <ScalarProperty Name="entryCode" ColumnName="entryCode" />
+                <ScalarProperty Name="entryName" ColumnName="entryName" />
+                <ScalarProperty Name="entryDescription" ColumnName="entryDescription" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Personaliza_Fn_ListaAreaCaso" FunctionName="LegasyModel.Store.Personaliza_Fn_ListaAreaCaso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LegasyModel.Personaliza_Fn_ListaAreaCaso_Result">
+                <ScalarProperty Name="entryCode" ColumnName="entryCode" />
+                <ScalarProperty Name="entryCodeStatus" ColumnName="entryCodeStatus" />
+                <ScalarProperty Name="entryName" ColumnName="entryName" />
+                <ScalarProperty Name="entryDescription" ColumnName="entryDescription" />
+                <ScalarProperty Name="userIDcreate" ColumnName="userIDcreate" />
+                <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Personaliza_Fn_TipoAreaCasoSeleccionado" FunctionName="LegasyModel.Store.Personaliza_Fn_TipoAreaCasoSeleccionado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LegasyModel.Personaliza_Fn_TipoAreaCasoSeleccionado_Result">
+                <ScalarProperty Name="entryCode" ColumnName="entryCode" />
+                <ScalarProperty Name="entryCodeStatus" ColumnName="entryCodeStatus" />
+                <ScalarProperty Name="entryName" ColumnName="entryName" />
+                <ScalarProperty Name="entryDescription" ColumnName="entryDescription" />
+                <ScalarProperty Name="userIDcreate" ColumnName="userIDcreate" />
+                <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Personaliza_P_CrearTipoaAreaCaso" FunctionName="LegasyModel.Store.Personaliza_P_CrearTipoaAreaCaso" />
+          <FunctionImportMapping FunctionImportName="Personaliza_P_EditarTipoAreaCaso" FunctionName="LegasyModel.Store.Personaliza_P_EditarTipoAreaCaso" />
          
         </EntityContainerMapping>
       </Mapping>
