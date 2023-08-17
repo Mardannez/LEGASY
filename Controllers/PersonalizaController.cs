@@ -1630,11 +1630,11 @@ namespace LEGASY.Controllers
 
         #endregion
 
-        #region  ################ Tipos de Proceso  #################
+        #region  ################ Tipos de Area de Caso  #################
 
         public ActionResult ListaTiposAreaCaso(string respuesta)
         {
-            if (ValidaSesion(24))
+            if (ValidaSesion(25))
             {
                 List<Personaliza_Fn_ListaAreaCaso_Result> AreaCaso = new List<Personaliza_Fn_ListaAreaCaso_Result>();
 
@@ -1653,7 +1653,7 @@ namespace LEGASY.Controllers
         public ActionResult CrearTiposAreaCaso(string respuesta)
         {
 
-            if (ValidaSesion(24))
+            if (ValidaSesion(25))
             {
                 if (respuesta != null)
                 {
@@ -1671,7 +1671,7 @@ namespace LEGASY.Controllers
         [HttpPost]
         public ActionResult CrearTiposAreaCaso(int Estado, string Nombre, string Descripcion)
         {
-            if (ValidaSesion(24))
+            if (ValidaSesion(25))
             {
                 try
                 {
@@ -1734,7 +1734,7 @@ namespace LEGASY.Controllers
         public ActionResult EditarTipoAreaCaso(int Id)
         {
 
-            if (ValidaSesion(24))
+            if (ValidaSesion(25))
             {
 
                 Personaliza_Fn_TipoAreaCasoSeleccionado_Result TipoAreaCaso = new Personaliza_Fn_TipoAreaCasoSeleccionado_Result();
@@ -1755,7 +1755,7 @@ namespace LEGASY.Controllers
         public ActionResult EditarTipoAreaCaso(Int64 Id, int Estado, string Nombre, string Descripcion)
         {
 
-            if (ValidaSesion(24))
+            if (ValidaSesion(25))
             {
                 try
                 {
@@ -1816,5 +1816,190 @@ namespace LEGASY.Controllers
 
         #endregion
 
+        #region  ################ Tipos de Caso  #################
+
+        public ActionResult ListaTiposCaso(string respuesta)
+        {
+            if (ValidaSesion(26))
+            {
+                List<Personaliza_Fn_ListaTipoCaso_Result> TipoCaso = new List<Personaliza_Fn_ListaTipoCaso_Result>();
+
+                TipoCaso = db.Personaliza_Fn_ListaTipoCaso().ToList();
+
+                return View(TipoCaso);
+
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        public ActionResult CrearTipoCaso(string respuesta)
+        {
+
+            if (ValidaSesion(26))
+            {
+                if (respuesta != null)
+                {
+                    ViewBag.Respuesta = respuesta;
+                }
+                return View();
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult CrearTipoCaso(int Estado, string Nombre, string Descripcion)
+        {
+            if (ValidaSesion(26))
+            {
+                try
+                {
+                    bool EstadoTipo = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoTipo = true;
+                    }
+                    else
+                    {
+                        EstadoTipo = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_CrearTipoCaso(EstadoTipo, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposCaso");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("CrearTipoCaso", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("CrearTipoCaso", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+
+        public ActionResult EditarTipoCaso(int Id)
+        {
+
+            if (ValidaSesion(26))
+            {
+
+                Personaliza_Fn_TipoCasoSeleccionado_Result TipoCaso = new Personaliza_Fn_TipoCasoSeleccionado_Result();
+
+                TipoCaso = db.Personaliza_Fn_TipoCasoSeleccionado(Id).FirstOrDefault();
+
+                return View(TipoCaso);
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult EditarTipoCaso(Int64 Id, int Estado, string Nombre, string Descripcion)
+        {
+
+            if (ValidaSesion(26))
+            {
+                try
+                {
+                    bool EstadoProceso = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoProceso = true;
+                    }
+                    else
+                    {
+                        EstadoProceso = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_EditarTipoCaso(Id, EstadoProceso, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposCaso");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("EditarTipoCaso", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("EditarTipoCaso", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        #endregion
     }
 }

@@ -262,6 +262,9 @@
     <Compile Include="Models\Personaliza_Fn_ListaSucursales_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Personaliza_Fn_ListaTipoCaso_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Personaliza_Fn_ListaTipoDemanda_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
@@ -284,6 +287,9 @@
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_TipoAreaCasoSeleccionado_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Personaliza_Fn_TipoCasoSeleccionado_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_TipoCuenta_Result.cs">
@@ -1284,6 +1290,9 @@
     <Content Include="Views\Personaliza\ListaTiposAreaCaso.cshtml" />
     <Content Include="Views\Personaliza\CrearTiposAreaCaso.cshtml" />
     <Content Include="Views\Personaliza\EditarTipoAreaCaso.cshtml" />
+    <Content Include="Views\Personaliza\ListaTiposCaso.cshtml" />
+    <Content Include="Views\Personaliza\CrearTipoCaso.cshtml" />
+    <Content Include="Views\Personaliza\EditarTipoCaso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

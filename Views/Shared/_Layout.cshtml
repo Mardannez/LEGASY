@@ -574,7 +574,7 @@
                                             if (Permiso.Count > 0)
                                             {
                                                 <li class="nav-item">
-                                                    <a href=@Url.Action("ListaTiposAreaCaso","Personaliza")  class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposAreaCaso")">
+                                                    <a href=@Url.Action("ListaTiposAreaCaso","Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposAreaCaso")">
                                                         <i class="nav-icon far fa-dot-circle"></i>
                                                         <p>Tipos de Area de Caso</p>
                                                     </a>
@@ -582,13 +582,23 @@
                                             }
                                         }
 
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 26).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
 
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Tipos de Caso</p>
-                                            </a>
-                                        </li>
+
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaTiposCaso","Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposCaso")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Tipos de Caso</p>
+                                                    </a>
+                                                </li>
+
+
+                                            }
+                                        }
+
                                         <li class="nav-item">
                                             <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                                                 <i class="nav-icon far fa-dot-circle"></i>
