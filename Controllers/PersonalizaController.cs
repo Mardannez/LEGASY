@@ -2001,5 +2001,378 @@ namespace LEGASY.Controllers
         }
 
         #endregion
+
+        #region  ################ Tipos de Pretension  #################
+
+        public ActionResult ListaTiposPretension(string respuesta)
+        {
+            if (ValidaSesion(27))
+            {
+                List<Personaliza_Fn_ListaTipoPretension_Result> TipoPretension = new List<Personaliza_Fn_ListaTipoPretension_Result>();
+
+                TipoPretension = db.Personaliza_Fn_ListaTipoPretension().ToList();
+
+                return View(TipoPretension);
+
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        public ActionResult CrearTipoPretension(string respuesta)
+        {
+
+            if (ValidaSesion(27))
+            {
+                if (respuesta != null)
+                {
+                    ViewBag.Respuesta = respuesta;
+                }
+                return View();
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult CrearTipoPretension(int Estado, string Nombre, string Descripcion)
+        {
+            if (ValidaSesion(27))
+            {
+                try
+                {
+                    bool EstadoTipo = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoTipo = true;
+                    }
+                    else
+                    {
+                        EstadoTipo = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_CrearTipoPretension(EstadoTipo, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposPretension");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("CrearTipoPretension", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("CrearTipoPretension", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+
+        public ActionResult EditarTipoPretension(int Id)
+        {
+
+            if (ValidaSesion(27))
+            {
+
+                Personaliza_Fn_TipoPretensionSeleccionada_Result TipoPretension = new Personaliza_Fn_TipoPretensionSeleccionada_Result();
+
+                TipoPretension = db.Personaliza_Fn_TipoPretensionSeleccionada(Id).FirstOrDefault();
+
+                return View(TipoPretension);
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult EditarTipoPretension(Int64 Id, int Estado, string Nombre, string Descripcion)
+        {
+
+            if (ValidaSesion(27))
+            {
+                try
+                {
+                    bool EstadoProceso = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoProceso = true;
+                    }
+                    else
+                    {
+                        EstadoProceso = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_EditarTipoPretension(Id, EstadoProceso, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposPretension");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("EditarTipoPretension", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("EditarTipoPretension", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        #endregion
+
+
+        #region  ################ Tipos de Gasto  #################
+
+        public ActionResult ListaTiposGasto(string respuesta)
+        {
+            if (ValidaSesion(28))
+            {
+                List<Personaliza_Fn_ListaTipoGasto_Result> TipoGasto = new List<Personaliza_Fn_ListaTipoGasto_Result>();
+
+                TipoGasto = db.Personaliza_Fn_ListaTipoGasto().ToList();
+
+                return View(TipoGasto);
+
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        public ActionResult CrearTipoGasto(string respuesta)
+        {
+
+            if (ValidaSesion(28))
+            {
+                if (respuesta != null)
+                {
+                    ViewBag.Respuesta = respuesta;
+                }
+                return View();
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult CrearTipoGasto(int Estado, string Nombre, string Descripcion)
+        {
+            if (ValidaSesion(28))
+            {
+                try
+                {
+                    bool EstadoTipo = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoTipo = true;
+                    }
+                    else
+                    {
+                        EstadoTipo = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_CrearTipoGasto(EstadoTipo, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposGasto");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("CrearTipoGasto", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("CrearTipoGasto", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+
+        public ActionResult EditarTipoGasto(int Id)
+        {
+
+            if (ValidaSesion(28))
+            {
+
+                Personaliza_Fn_TipoGastoSeleccionado_Result TipoGasto = new Personaliza_Fn_TipoGastoSeleccionado_Result();
+
+                TipoGasto = db.Personaliza_Fn_TipoGastoSeleccionado(Id).FirstOrDefault();
+
+                return View(TipoGasto);
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult EditarTipoGasto(Int64 Id, int Estado, string Nombre, string Descripcion)
+        {
+
+            if (ValidaSesion(28))
+            {
+                try
+                {
+                    bool EstadoProceso = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoProceso = true;
+                    }
+                    else
+                    {
+                        EstadoProceso = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_EditarTipoGasto(Id, EstadoProceso, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposGasto");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("EditarTipoGasto", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("EditarTipoGasto", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        #endregion
     }
 }

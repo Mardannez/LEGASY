@@ -518,7 +518,7 @@
                                             {
 
                                                 <li class="nav-item">
-                                                    <a href=@Url.Action("ListaTiposDemanda","Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposDemanda")">
+                                                    <a href=@Url.Action("ListaTiposDemanda", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposDemanda")">
                                                         <i class="nav-icon far fa-dot-circle"></i>
                                                         <p>Tipos de Demanda</p>
                                                     </a>
@@ -531,7 +531,7 @@
                                             if (Permiso.Count > 0)
                                             {
                                                 <li class="nav-item">
-                                                    <a href=@Url.Action("ListaTiposInstancia","Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposInstancia")">
+                                                    <a href=@Url.Action("ListaTiposInstancia", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposInstancia")">
                                                         <i class="nav-icon far fa-dot-circle"></i>
                                                         <p>Tipos de instancia</p>
                                                     </a>
@@ -545,7 +545,7 @@
                                             if (Permiso.Count > 0)
                                             {
                                                 <li class="nav-item">
-                                                    <a href=@Url.Action("ListaTiposProceso","Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposProceso")">
+                                                    <a href=@Url.Action("ListaTiposProceso", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposProceso")">
                                                         <i class="nav-icon far fa-dot-circle"></i>
                                                         <p>Tipos de proceso</p>
                                                     </a>
@@ -560,7 +560,7 @@
                                             {
 
                                                 <li class="nav-item">
-                                                    <a href=@Url.Action("ListaTiposParte","Personaliza") class="nav-link  @Html.IsSelected(controller: "Personaliza", action: "ListaTiposParte")">
+                                                    <a href=@Url.Action("ListaTiposParte", "Personaliza") class="nav-link  @Html.IsSelected(controller: "Personaliza", action: "ListaTiposParte")">
                                                         <i class="nav-icon far fa-dot-circle"></i>
                                                         <p>Tipos de Parte</p>
                                                     </a>
@@ -574,7 +574,7 @@
                                             if (Permiso.Count > 0)
                                             {
                                                 <li class="nav-item">
-                                                    <a href=@Url.Action("ListaTiposAreaCaso","Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposAreaCaso")">
+                                                    <a href=@Url.Action("ListaTiposAreaCaso", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposAreaCaso")">
                                                         <i class="nav-icon far fa-dot-circle"></i>
                                                         <p>Tipos de Area de Caso</p>
                                                     </a>
@@ -589,7 +589,7 @@
 
 
                                                 <li class="nav-item">
-                                                    <a href=@Url.Action("ListaTiposCaso","Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposCaso")">
+                                                    <a href=@Url.Action("ListaTiposCaso", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposCaso")">
                                                         <i class="nav-icon far fa-dot-circle"></i>
                                                         <p>Tipos de Caso</p>
                                                     </a>
@@ -599,25 +599,49 @@
                                             }
                                         }
 
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Tipos de pretensión</p>
-                                            </a>
-                                        </li>
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 27).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaTiposPretension", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposPretension")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Tipos de pretensión</p>
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
 
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Tipos de documento</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                <i class="nav-icon far fa-dot-circle"></i>
-                                                <p>Tipos de gasto</p>
-                                            </a>
-                                        </li>
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 28).ToList();
+                                            <li class="nav-item">
+                                                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                                    <i class="nav-icon far fa-dot-circle"></i>
+                                                    <p>Tipos de documento</p>
+                                                </a>
+                                            </li>
+
+                                        }
+
+
+                                        @{
+                                            Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 29).ToList();
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaTiposGasto", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposGasto")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Tipos de gasto</p>
+                                                    </a>
+                                                </li>
+
+                                            }
+
+
+
+                                        }
+
+
 
                                     </ul>
                                 </li>

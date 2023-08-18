@@ -268,10 +268,16 @@
     <Compile Include="Models\Personaliza_Fn_ListaTipoDemanda_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Personaliza_Fn_ListaTipoGasto_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Personaliza_Fn_ListaTipoInstancia_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_ListaTipoParte_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Personaliza_Fn_ListaTipoPretension_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_ListaTipoProceso_Result.cs">
@@ -298,10 +304,16 @@
     <Compile Include="Models\Personaliza_Fn_TipoDemandaSeleccionada_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Personaliza_Fn_TipoGastoSeleccionado_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Personaliza_Fn_TipoInstanciaSeleccionada_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_TipoParteSeleccionada_Result.cs">
+      <DependentUpon>Legasy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Personaliza_Fn_TipoPretensionSeleccionada_Result.cs">
       <DependentUpon>Legasy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personaliza_Fn_TipoProcedimientoSeleccionado_Result.cs">
@@ -1293,6 +1305,12 @@
     <Content Include="Views\Personaliza\ListaTiposCaso.cshtml" />
     <Content Include="Views\Personaliza\CrearTipoCaso.cshtml" />
     <Content Include="Views\Personaliza\EditarTipoCaso.cshtml" />
+    <Content Include="Views\Personaliza\ListaTiposPretension.cshtml" />
+    <Content Include="Views\Personaliza\CrearTipoPretension.cshtml" />
+    <Content Include="Views\Personaliza\EditarTipoPretension.cshtml" />
+    <Content Include="Views\Personaliza\ListaTiposGasto.cshtml" />
+    <Content Include="Views\Personaliza\CrearTipoGasto.cshtml" />
+    <Content Include="Views\Personaliza\EditarTipoGasto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,166 @@
+﻿@using LEGASY.Models
+@model Personaliza_Fn_TipoPretensionSeleccionada_Result
+@{
+    ViewBag.Title = "EditarTipoPretension";
+}
+
+
+<br />
+<!-- Content Header (Page header) -->
+<div class="card-header" style="background-color:white;">
+    <div class="col-sm-12">
+        <h1>Editar <strong>@Model.entryDescription</strong></h1>
+    </div>
+
+</div>
+
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <div class="col-sm-10">
+                        <h3 class="card-title">Datos de tipo de Pretension</h3>
+                    </div>
+                    <br />
+                    <hr />
+                    <div class="card-body pad table-responsive">
+
+                        @*Todo el Contenido Aqui*@
+                        <!-- Horizontal Form -->
+                        <div class="card card-secondary">
+                            <div class="card-header">
+                                <h3 class="card-title">Formulario</h3>
+                            </div>
+
+                            @if (ViewBag.Respuesta != null)
+                            {
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="alert alert-warning">
+                                            @ViewBag.Respuesta
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "TipoPretension" }))
+                            {
+
+                                @Html.Hidden("Id", Model.entryCode);
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="Nombre">Estado</label>
+                                                <select class="form-control" id="Estado" name="Estado">
+                                                    <option selected disabled="disabled">Seleccione</option>
+                                                    <option value="1">Activo</option>
+                                                    <option value="0">Inactivo</option>
+
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="Direccion">Nombre</label>
+                                                <input type="text" class="form-control" id="Nombre" name="Nombre" value="@Model.entryName">
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="Descripcion">Descripcion</label>
+                                                <input type="text" class="form-control" id="Descripcion" name="Descripcion" value="@Model.entryDescription">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                    <button type="button" class="btn btn-danger">Cancelar</button>
+                                </div>
+
+                                <!-- /.card-footer -->
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+        $(function () {
+
+
+            $('#TipoPretension').validate({
+                rules: {
+                    Estado: {
+                        required: true
+
+                    },
+                    Nombre: {
+                        required: true,
+                        maxlength: 50
+                    },
+                    Descripcion: {
+                        required: true,
+                        maxlength: 1000
+                    },
+                },
+                messages: {
+                    Estado: {
+                        required: "Por favor seleccione el estado"
+
+                    },
+                    Nombre: {
+                        required: "Por favor ingrese un nombre",
+                        maxlength: "Solo debe tener 250 caracteres",
+                    },
+                    Descripcion: {
+                        required: "Ingrese la descripcion",
+                        maxlength: "Debe tener un maximo de 1000 caracteres"
+                    }
+
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+
+
+        });
+
+    </script>
+
+}
+
+
+
