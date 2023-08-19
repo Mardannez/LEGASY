@@ -1442,5 +1442,83 @@ namespace LEGASY.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_EditarTipoGasto", idParameter, estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
         }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_ListaTipoDocumento")]
+        public virtual IQueryable<Personaliza_Fn_ListaTipoDocumento_Result> Personaliza_Fn_ListaTipoDocumento()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_ListaTipoDocumento_Result>("[LegasyEntities].[Personaliza_Fn_ListaTipoDocumento]()");
+        }
+    
+        [DbFunction("LegasyEntities", "Personaliza_Fn_TipoDocumentoSeleccionado")]
+        public virtual IQueryable<Personaliza_Fn_TipoDocumentoSeleccionado_Result> Personaliza_Fn_TipoDocumentoSeleccionado(Nullable<long> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Personaliza_Fn_TipoDocumentoSeleccionado_Result>("[LegasyEntities].[Personaliza_Fn_TipoDocumentoSeleccionado](@Id)", idParameter);
+        }
+    
+        public virtual int Personaliza_P_CrearTipoDocumento(Nullable<long> idTipoParte, Nullable<bool> estado, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var idTipoParteParameter = idTipoParte.HasValue ?
+                new ObjectParameter("IdTipoParte", idTipoParte) :
+                new ObjectParameter("IdTipoParte", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_CrearTipoDocumento", idTipoParteParameter, estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
+    
+        public virtual int Personaliza_P_EditarTipoDocumento(Nullable<long> id, Nullable<long> idTipoParte, Nullable<bool> estado, string nombre, string descripcion, Nullable<long> idUsuario, Nullable<System.DateTime> fechaRegistro, ObjectParameter mENSAJE, ObjectParameter rESPUESTA)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(long));
+    
+            var idTipoParteParameter = idTipoParte.HasValue ?
+                new ObjectParameter("IdTipoParte", idTipoParte) :
+                new ObjectParameter("IdTipoParte", typeof(long));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            var fechaRegistroParameter = fechaRegistro.HasValue ?
+                new ObjectParameter("FechaRegistro", fechaRegistro) :
+                new ObjectParameter("FechaRegistro", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Personaliza_P_EditarTipoDocumento", idParameter, idTipoParteParameter, estadoParameter, nombreParameter, descripcionParameter, idUsuarioParameter, fechaRegistroParameter, mENSAJE, rESPUESTA);
+        }
     }
 }

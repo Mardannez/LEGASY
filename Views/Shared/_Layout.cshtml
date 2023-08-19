@@ -236,7 +236,8 @@
                         <img src="~/Content/dist/img/avatar4.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block" @user.entryDisplayName</a>
+                      
+                        <a href="#" class="d-block">@user.entryDisplayName</a>
                     </div>
                 </div>
 
@@ -246,7 +247,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                           with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         @*Menu de Inicio*@
                         <li class="nav-item @Html.IsOpen(controller: "Home")">
                             <a href="#" class="nav-link @Html.IsSelected(controller: "Home")">
@@ -267,9 +268,8 @@
 
                             </ul>
                         </li>
-
-                        @*Menu de Seguridad*@
                         @{
+                            //Menu de Seguridad
                             Modulo = db.Seguridad_Fn_ValidaModulo(Convert.ToInt32(user.entryCode), 1).ToList();
                             if (Modulo.Count > 0)
                             {
@@ -322,18 +322,14 @@
 
                             }
 
-                        };
+                            //Menu de Entidades
 
-
-                        @*Menu de Entidades*@
-                        @{
                             Modulo = db.Seguridad_Fn_ValidaModulo(Convert.ToInt32(user.entryCode), 2).ToList();
                             if (Modulo.Count > 0)
                             {
-
                                 @*Menu de Entidades*@
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link" id="Entidades">
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link ">
                                         <i class="nav-icon fas fa-book-open"></i>
                                         <p>
                                             Entidades
@@ -341,9 +337,6 @@
                                             @*<span class="badge badge-info right">6</span>*@
                                         </p>
                                     </a>
-
-
-
                                     <ul class="nav nav-treeview">
 
                                         @{
@@ -371,7 +364,6 @@
                                                 </li>
                                             }
 
-
                                         }
 
                                         @{
@@ -387,20 +379,14 @@
                                                 </li>
                                             }
 
-
                                         }
-
 
                                     </ul>
                                 </li>
 
                             }
 
-                        };
-
-
-                        @*Menu de Personalizar*@
-                        @{
+                            //Menu de Personalizar
 
                             Modulo = db.Seguridad_Fn_ValidaModulo(Convert.ToInt32(user.entryCode), 3).ToList();
                             if (Modulo.Count > 0)
@@ -416,7 +402,6 @@
                                         </p>
                                     </a>
 
-
                                     <ul class="nav nav-treeview">
 
                                         @{
@@ -431,7 +416,6 @@
                                                 </li>
 
                                             }
-
                                         }
 
                                         @{
@@ -476,8 +460,6 @@
                                                 </li>
 
                                             }
-
-
 
                                         }
 
@@ -595,7 +577,6 @@
                                                     </a>
                                                 </li>
 
-
                                             }
                                         }
 
@@ -614,15 +595,18 @@
 
                                         @{
                                             Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 28).ToList();
-                                            <li class="nav-item">
-                                                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                                    <i class="nav-icon far fa-dot-circle"></i>
-                                                    <p>Tipos de documento</p>
-                                                </a>
-                                            </li>
+                                            if (Permiso.Count > 0)
+                                            {
+                                                <li class="nav-item">
+                                                    <a href=@Url.Action("ListaTiposDocumento", "Personaliza") class="nav-link @Html.IsSelected(controller: "Personaliza", action: "ListaTiposDocumento")">
+                                                        <i class="nav-icon far fa-dot-circle"></i>
+                                                        <p>Tipos de documento</p>
+                                                    </a>
+                                                </li>
+
+                                            }
 
                                         }
-
 
                                         @{
                                             Permiso = db.Seguridad_Fn_ValidaPermiso(Convert.ToInt32(user.entryCode), 29).ToList();
@@ -636,53 +620,24 @@
                                                 </li>
 
                                             }
-
-
-
                                         }
-
-
-
                                     </ul>
                                 </li>
-                                            }
+                            }
 
-                        };
-
+                        }
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
         </aside>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            @*Todo el contenido de las paginas aqui*@
-
-            <!--<div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
-                </div>-->
-            <!-- /.col -->
-            <!--<div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard v1</li>
-                </ol>
-            </div>-->
-            <!-- /.col -->
-            <!--</div>--><!-- /.row -->
+           
 
             @RenderBody()
 
-
-
-
-            <!-- /.content-header -->
-            <!-- Main content -->
-            <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
@@ -692,14 +647,12 @@
                 <b>Version</b> 1.0
             </div>
         </footer>
-
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
     </div>
-
 
     <!-- jQuery -->
     <script src="~/Plugins/jquery/jquery.min.js"></script>

@@ -1047,6 +1047,22 @@
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="Personaliza_Fn_ListaTipoDocumento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="entryCode" Type="bigint" Nullable="false" />
+                <Property Name="entryCodePartType" Type="bigint" Nullable="false" />
+                <Property Name="TipoParteNombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryCodeStatus" Type="bit" Nullable="false" />
+                <Property Name="entryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryDescription" Type="nvarchar" MaxLength="250" />
+                <Property Name="userIDcreate" Type="bigint" />
+                <Property Name="dateCreate" Type="datetime" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="Personaliza_Fn_ListaTipoGasto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
@@ -1220,6 +1236,23 @@
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="Personaliza_Fn_TipoDocumentoSeleccionado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="entryCode" Type="bigint" Nullable="false" />
+                <Property Name="entryCodePartType" Type="bigint" Nullable="false" />
+                <Property Name="TipoParteNombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryCodeStatus" Type="bit" Nullable="false" />
+                <Property Name="entryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="entryDescription" Type="nvarchar" MaxLength="250" />
+                <Property Name="userIDcreate" Type="bigint" />
+                <Property Name="dateCreate" Type="datetime" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="Personaliza_Fn_TipoGastoSeleccionado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdTipo" Type="bigint" Mode="In" />
           <ReturnType>
@@ -1381,6 +1414,16 @@
           <Parameter Name="MENSAJE" Type="varchar(max)" Mode="InOut" />
           <Parameter Name="RESPUESTA" Type="varchar(max)" Mode="InOut" />
         </Function>
+        <Function Name="Personaliza_P_CrearTipoDocumento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoParte" Type="bigint" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
+          <Parameter Name="FechaRegistro" Type="datetime" Mode="In" />
+          <Parameter Name="MENSAJE" Type="varchar(max)" Mode="InOut" />
+          <Parameter Name="RESPUESTA" Type="varchar(max)" Mode="InOut" />
+        </Function>
         <Function Name="Personaliza_P_CrearTipoGasto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Estado" Type="bit" Mode="In" />
           <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
@@ -1488,6 +1531,17 @@
         </Function>
         <Function Name="Personaliza_P_EditarTipoDemanda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="bigint" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
+          <Parameter Name="FechaRegistro" Type="datetime" Mode="In" />
+          <Parameter Name="MENSAJE" Type="varchar(max)" Mode="InOut" />
+          <Parameter Name="RESPUESTA" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="Personaliza_P_EditarTipoDocumento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+          <Parameter Name="IdTipoParte" Type="bigint" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
           <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
           <Parameter Name="Descripcion" Type="nvarchar" Mode="In" />
@@ -3395,7 +3449,7 @@
           </FunctionImport>
           <FunctionImport Name="Personaliza_Fn_ListaTipoGasto" IsComposable="true" ReturnType="Collection(LegasyModel.Personaliza_Fn_ListaTipoGasto_Result)" />
           <FunctionImport Name="Personaliza_Fn_TipoGastoSeleccionado" IsComposable="true" ReturnType="Collection(LegasyModel.Personaliza_Fn_TipoGastoSeleccionado_Result)">
-            <Parameter Name="IdTipo" Mode="In" Type="Int64" />
+          <Parameter Name="IdTipo" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="Personaliza_P_CrearTipoGasto">
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
@@ -3408,6 +3462,31 @@
           </FunctionImport>
           <FunctionImport Name="Personaliza_P_EditarTipoGasto">
             <Parameter Name="Id" Mode="In" Type="Int64" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+            <Parameter Name="FechaRegistro" Mode="In" Type="DateTime" />
+            <Parameter Name="MENSAJE" Mode="InOut" Type="String" />
+            <Parameter Name="RESPUESTA" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Personaliza_Fn_ListaTipoDocumento" IsComposable="true" ReturnType="Collection(LegasyModel.Personaliza_Fn_ListaTipoDocumento_Result)" />
+          <FunctionImport Name="Personaliza_Fn_TipoDocumentoSeleccionado" IsComposable="true" ReturnType="Collection(LegasyModel.Personaliza_Fn_TipoDocumentoSeleccionado_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="Personaliza_P_CrearTipoDocumento">
+            <Parameter Name="IdTipoParte" Mode="In" Type="Int64" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+            <Parameter Name="FechaRegistro" Mode="In" Type="DateTime" />
+            <Parameter Name="MENSAJE" Mode="InOut" Type="String" />
+            <Parameter Name="RESPUESTA" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Personaliza_P_EditarTipoDocumento">
+            <Parameter Name="Id" Mode="In" Type="Int64" />
+            <Parameter Name="IdTipoParte" Mode="In" Type="Int64" />
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
@@ -3804,6 +3883,26 @@
         </ComplexType>
         <ComplexType Name="Personaliza_Fn_TipoGastoSeleccionado_Result">
           <Property Type="Int64" Name="entryCode" Nullable="false" />
+          <Property Type="Boolean" Name="entryCodeStatus" Nullable="false" />
+          <Property Type="String" Name="entryName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="entryDescription" Nullable="true" MaxLength="250" />
+          <Property Type="Int64" Name="userIDcreate" Nullable="true" />
+          <Property Type="DateTime" Name="dateCreate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Personaliza_Fn_ListaTipoDocumento_Result">
+          <Property Type="Int64" Name="entryCode" Nullable="false" />
+          <Property Type="Int64" Name="entryCodePartType" Nullable="false" />
+          <Property Type="String" Name="TipoParteNombre" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="entryCodeStatus" Nullable="false" />
+          <Property Type="String" Name="entryName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="entryDescription" Nullable="true" MaxLength="250" />
+          <Property Type="Int64" Name="userIDcreate" Nullable="true" />
+          <Property Type="DateTime" Name="dateCreate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Personaliza_Fn_TipoDocumentoSeleccionado_Result">
+          <Property Type="Int64" Name="entryCode" Nullable="false" />
+          <Property Type="Int64" Name="entryCodePartType" Nullable="false" />
+          <Property Type="String" Name="TipoParteNombre" Nullable="false" MaxLength="50" />
           <Property Type="Boolean" Name="entryCodeStatus" Nullable="false" />
           <Property Type="String" Name="entryName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="entryDescription" Nullable="true" MaxLength="250" />
@@ -4922,6 +5021,36 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Personaliza_P_CrearTipoGasto" FunctionName="LegasyModel.Store.Personaliza_P_CrearTipoGasto" />
           <FunctionImportMapping FunctionImportName="Personaliza_P_EditarTipoGasto" FunctionName="LegasyModel.Store.Personaliza_P_EditarTipoGasto" />
+          <FunctionImportMapping FunctionImportName="Personaliza_Fn_ListaTipoDocumento" FunctionName="LegasyModel.Store.Personaliza_Fn_ListaTipoDocumento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LegasyModel.Personaliza_Fn_ListaTipoDocumento_Result">
+                <ScalarProperty Name="entryCode" ColumnName="entryCode" />
+                <ScalarProperty Name="entryCodePartType" ColumnName="entryCodePartType" />
+                <ScalarProperty Name="TipoParteNombre" ColumnName="TipoParteNombre" />
+                <ScalarProperty Name="entryCodeStatus" ColumnName="entryCodeStatus" />
+                <ScalarProperty Name="entryName" ColumnName="entryName" />
+                <ScalarProperty Name="entryDescription" ColumnName="entryDescription" />
+                <ScalarProperty Name="userIDcreate" ColumnName="userIDcreate" />
+                <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Personaliza_Fn_TipoDocumentoSeleccionado" FunctionName="LegasyModel.Store.Personaliza_Fn_TipoDocumentoSeleccionado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LegasyModel.Personaliza_Fn_TipoDocumentoSeleccionado_Result">
+                <ScalarProperty Name="entryCode" ColumnName="entryCode" />
+                <ScalarProperty Name="entryCodePartType" ColumnName="entryCodePartType" />
+                <ScalarProperty Name="TipoParteNombre" ColumnName="TipoParteNombre" />
+                <ScalarProperty Name="entryCodeStatus" ColumnName="entryCodeStatus" />
+                <ScalarProperty Name="entryName" ColumnName="entryName" />
+                <ScalarProperty Name="entryDescription" ColumnName="entryDescription" />
+                <ScalarProperty Name="userIDcreate" ColumnName="userIDcreate" />
+                <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Personaliza_P_CrearTipoDocumento" FunctionName="LegasyModel.Store.Personaliza_P_CrearTipoDocumento" />
+          <FunctionImportMapping FunctionImportName="Personaliza_P_EditarTipoDocumento" FunctionName="LegasyModel.Store.Personaliza_P_EditarTipoDocumento" />
          
         </EntityContainerMapping>
       </Mapping>

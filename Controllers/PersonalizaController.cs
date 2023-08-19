@@ -12,6 +12,8 @@ namespace LEGASY.Controllers
  
     public class PersonalizaController : PrincipalController
     {
+
+        #region #################### Empresas ###################
         // GET: Personaliza
         public ActionResult Index()
         {
@@ -167,7 +169,9 @@ namespace LEGASY.Controllers
             }
           
         }
+        #endregion
 
+        #region ################ Sucursales #################
         public ActionResult GuardarSucursal(int IdEmpresa)
         {
             if (ValidaSesion(8))
@@ -254,6 +258,10 @@ namespace LEGASY.Controllers
             }
 
         }
+
+        #endregion
+
+        #region ############### Cuentas de Banco ###################
         public ActionResult ListaCuentasBanco(string respuesta)
         {
             if (ValidaSesion(9))
@@ -309,6 +317,9 @@ namespace LEGASY.Controllers
             }
 
         }
+
+        #endregion
+
         #region  ################ Periodos de Presupuesto  #################
 
         public ActionResult ListaPeriodosPresupuesto(string respuesta)
@@ -1423,7 +1434,6 @@ namespace LEGASY.Controllers
 
         #endregion
 
-
         #region  ################ Tipos de Parte de Casos  #################
 
         public ActionResult ListaTiposParte(string respuesta)
@@ -2188,12 +2198,217 @@ namespace LEGASY.Controllers
 
         #endregion
 
+        #region  ################ Tipos de Documento  #################
+
+        public ActionResult ListaTiposDocumento(string respuesta)
+        {
+            if (ValidaSesion(28))
+            {
+                List<Personaliza_Fn_ListaTipoDocumento_Result> TiposDocumento = new List<Personaliza_Fn_ListaTipoDocumento_Result>();
+
+                TiposDocumento = db.Personaliza_Fn_ListaTipoDocumento().ToList();
+
+
+                return View(TiposDocumento);
+
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        public ActionResult CrearTiposDocumento(string respuesta)
+        {
+
+            if (ValidaSesion(28))
+            {
+                if (respuesta != null)
+                {
+                    ViewBag.Respuesta = respuesta;
+                }
+                List<SelectListItem> TipoParte = new List<SelectListItem>();
+                TipoParte.Add(new SelectListItem { Value = "", Text = "[-- Seleccionar Tipo de Parte --]" });
+                foreach (var item in db.Personaliza_Fn_DropDown_TipoParte().ToList())
+                {
+                    TipoParte.Add(new SelectListItem { Value = item.entryCode.ToString(), Text = item.entryName.ToString() });
+                }
+
+                ViewBag.TiposdeParte = TipoParte;
+
+                return View();
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+        [HttpPost]
+        public ActionResult CrearTiposDocumento(Int64 TiposdeParte, int Estado, string Nombre, string Descripcion)
+        {
+            if (ValidaSesion(28))
+            {
+                try
+                {
+                    bool EstadoTipo = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoTipo = true;
+                    }
+                    else
+                    {
+                        EstadoTipo = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_CrearTipoDocumento(TiposdeParte, EstadoTipo, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposDocumento");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("CrearTiposDocumento", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("CrearTiposDocumento", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+
+        public ActionResult EditarTipoDocumento(int Id)
+        {
+
+            if (ValidaSesion(28))
+            {
+
+                Personaliza_Fn_TipoDocumentoSeleccionado_Result TipoDocumento = new Personaliza_Fn_TipoDocumentoSeleccionado_Result();
+
+                TipoDocumento = db.Personaliza_Fn_TipoDocumentoSeleccionado(Id).FirstOrDefault();
+
+
+                List<SelectListItem> TipoParteDrop = new List<SelectListItem>();
+                TipoParteDrop.Add(new SelectListItem { Value = "", Text = "[-- Seleccionar Tipo de Parte --]" });
+                foreach (var item in db.Personaliza_Fn_DropDown_TipoParte().ToList())
+                {
+                    TipoParteDrop.Add(new SelectListItem { Value = item.entryCode.ToString(), Text = item.entryName.ToString() });
+                }
+
+                ViewBag.TiposdeParte = TipoParteDrop;
+
+                return View(TipoDocumento);
+            }
+            else
+            {
+                return Salir();
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult EditarTipoDocumento(Int64 Id, Int64 TiposdeParte, int Estado, string Nombre, string Descripcion)
+        {
+
+            if (ValidaSesion(28))
+            {
+                try
+                {
+                    bool EstadoDocumento = false;
+
+                    if (Estado == 1)
+                    {
+                        EstadoDocumento = true;
+                    }
+                    else
+                    {
+                        EstadoDocumento = false;
+                    }
+
+                    ObjectParameter Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    ObjectParameter Mensaje = new ObjectParameter("Mensaje", typeof(string));
+
+                    db.Personaliza_P_EditarTipoDocumento(Id, TiposdeParte, EstadoDocumento, Nombre, Descripcion, this.UsuarioActual.entryCode, DateTime.Now, Respuesta, Mensaje);
+
+                    int RespValue = Convert.ToInt32(Respuesta.Value);
+                    string MenValue = Convert.ToString(Mensaje.Value);
+
+                    if (RespValue == 1)
+                    {
+
+                        return RedirectToAction("ListaTiposDocumento");
+                    }
+                    else
+                    {
+
+                        return RedirectToAction("EditarTipoDocumento", new { @respuesta = MenValue.ToString() });
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    string Error;
+
+                    if (ex.InnerException != null)
+                    {
+                        Error = ex.InnerException.Message;
+                    }
+                    else
+                    {
+                        Error = ex.Message;
+                    }
+
+                    return RedirectToAction("EditarTipoDocumento", new { @respuesta = Error });
+                }
+            }
+            else
+            {
+                return Salir();
+            }
+
+        }
+
+        #endregion
 
         #region  ################ Tipos de Gasto  #################
 
         public ActionResult ListaTiposGasto(string respuesta)
         {
-            if (ValidaSesion(28))
+            if (ValidaSesion(29))
             {
                 List<Personaliza_Fn_ListaTipoGasto_Result> TipoGasto = new List<Personaliza_Fn_ListaTipoGasto_Result>();
 
@@ -2212,7 +2427,7 @@ namespace LEGASY.Controllers
         public ActionResult CrearTipoGasto(string respuesta)
         {
 
-            if (ValidaSesion(28))
+            if (ValidaSesion(29))
             {
                 if (respuesta != null)
                 {
@@ -2230,7 +2445,7 @@ namespace LEGASY.Controllers
         [HttpPost]
         public ActionResult CrearTipoGasto(int Estado, string Nombre, string Descripcion)
         {
-            if (ValidaSesion(28))
+            if (ValidaSesion(29))
             {
                 try
                 {
@@ -2293,7 +2508,7 @@ namespace LEGASY.Controllers
         public ActionResult EditarTipoGasto(int Id)
         {
 
-            if (ValidaSesion(28))
+            if (ValidaSesion(29))
             {
 
                 Personaliza_Fn_TipoGastoSeleccionado_Result TipoGasto = new Personaliza_Fn_TipoGastoSeleccionado_Result();
@@ -2314,7 +2529,7 @@ namespace LEGASY.Controllers
         public ActionResult EditarTipoGasto(Int64 Id, int Estado, string Nombre, string Descripcion)
         {
 
-            if (ValidaSesion(28))
+            if (ValidaSesion(29))
             {
                 try
                 {
@@ -2374,5 +2589,10 @@ namespace LEGASY.Controllers
         }
 
         #endregion
+
+
+
+
+
     }
 }

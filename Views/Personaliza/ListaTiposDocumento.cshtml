@@ -1,14 +1,15 @@
 ﻿@using LEGASY.Models
-@model List<LEGASY.Models.Personaliza_Fn_ListaTipoParte_Result>
+@using LEGASY.Helpers;
+@model List<LEGASY.Models.Personaliza_Fn_ListaTipoDocumento_Result>
 @{
-    ViewBag.Title = "ListaTiposParte";
+    ViewBag.Title = "ListaTiposDocumento";
 }
 
 <br />
 <!-- Content Header (Page header) -->
 <div class="card-header" style="background-color:white;">
     <div class="col-sm-6">
-        <h1>Tipos de Partes</h1>
+        <h1>Tipos de Documentos</h1>
     </div>
 </div>
 
@@ -22,18 +23,18 @@
                 <div class="card-header">
                     <div class="row mb-2">
                         <div class="col-sm-11">
-                            <h3 class="card-title">Listado de Tipos de Partes</h3>
+                            <h3 class="card-title">Listado de Tipos de Documentos</h3>
                         </div>
                         <div class="col-sm-1">
-
-                            @Html.ActionLink("Registrar nuevo", "CrearTiposParte", null, new { @class = "btn btn-outline-primary btn-block btn-xs" })
+                           
+                            @Html.ActionLink("Registrar nuevo", "CrearTiposDocumento", null, new { @class = "btn btn-outline-primary btn-block btn-xs" })
 
                         </div>
                     </div>
                 </div>
                 <div class="card-body pad table-responsive">
 
-                    <table id="ListaTipoParte" class="table table-bordered table-striped">
+                    <table id="ListaTipoDocumento" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -71,7 +72,7 @@
                                     <td>@item.entryDescription</td>
                                     <td>@item.dateCreate</td>
                                     <td>
-                                        <a class="btn btn-success btn-block" href="@Url.Action("EditarTipoParte", "Personaliza", new {Id = item.entryCode})">
+                                        <a class="btn btn-success btn-block" href="@Url.Action("EditarTipoDocumento", "Personaliza", new {Id = item.entryCode})">
                                             <i class="fas fa-edit"></i> Editar
                                         </a>
                                     </td>
@@ -97,7 +98,7 @@
     <script>
         $(function () {
 
-            $("#ListaTipoParte").DataTable({
+            $("#ListaTipoDocumento").DataTable({
                 "responsive": true, "lengthChange": true, "autoWidth": true,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
                 "language": {
@@ -134,5 +135,7 @@
     </script>
 
 }
+
+
 
 
